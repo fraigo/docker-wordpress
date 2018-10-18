@@ -1,0 +1,29 @@
+{
+  "name": "docker-wordpress",
+  "version": "1.0.0",
+  "description": "Docker-Wordpress development template",
+  "main": "index.js",
+  "scripts": {
+    "start": "docker-compose up -d",
+    "stop": "docker-compose down",
+    "open": "xdg-open http://localhost:8000",
+    "console": "docker-compose exec wordpress bash",
+    "perm": "chmod -R 777 themes && chmod -R 777 plugins && chmod -R 777 data",
+    "help" : "echo 'npm run [start|stop|open|console]'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fraigo/docker-wordpress.git"
+  },
+  "keywords": [
+    "Docker",
+    "Wordpress",
+    "Template"
+  ],
+  "author": "Francisco Igor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fraigo/docker-wordpress/issues"
+  },
+  "homepage": "https://github.com/fraigo/docker-wordpress#readme"
+}
