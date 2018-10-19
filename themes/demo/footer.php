@@ -18,11 +18,7 @@
       <div class="container">
 				<div class="site-info">
 				<?php
-					/**
-					 * Fires before the Twenty Fifteen footer text for footer customization.
-					 *
-					 * @since Demo 1.0
-					 */
+					
 					do_action( 'demo_credits' );
 				?>
 				<?php
