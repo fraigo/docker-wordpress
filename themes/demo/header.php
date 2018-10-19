@@ -19,37 +19,63 @@
 	
 	<?php wp_head(); ?>
 </head>
+<?php
+	$logo=get_custom_logo();
+	$menuLocations = get_nav_menu_locations(); 
+	$menuID = $menuLocations['primary']; 
+	$primaryNav = wp_get_nav_menu_items($menuID);
+	$categories = get_categories();
+	$tags = get_tags();
 
+	$custom_logo_id = get_theme_mod( 'custom_logo' );
+	$logourl = wp_get_attachment_url( $custom_logo_id );
+?>
 <body <?php body_class(); ?>>
 
 	<nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
-		<div class="navbar navbar-dark col-md-4 ">
+		<div class="navbar navbar-dark col-md-auto ">
 			<a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-				<h1><?php bloginfo( 'name' ); ?></h1>
-				<small><?php echo get_bloginfo( 'description', 'display' ); ?></small>
+			<div class="row">
+				<div class="col-xs-auto">
+					<img class="custom-logo" src="<?php echo esc_url($logourl) ?>" height=80 >
+				</div>
+				<div class="col-xs-auto ml-2">
+					<h1><?php bloginfo( 'name' ); ?></h1>
+					<small><?php echo get_bloginfo( 'description', 'display' ); ?></small>
+				</div>
+			</div>
 			</a>
 		</div>
-		<div class="col-md-8 ">
+		<div class="col-md">
 			<div class="row navbar navbar-dark  navbar-expand ">
 				<ul class="navbar-nav mx-auto">
 					<li class="nav-item active">
 						<a class="nav-link" href="./">Home <span class="sr-only">(current)</span></a>
 					</li>
-					<?php foreach( [] as $link) {?>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Link</a>
+					<?php 
+						if ($primaryNav) foreach( $primaryNav as $idx => $link) {?>
+						<li class="nav-item text-nowrap">
+							<a class="nav-link" href="<?php echo $link->url ?>"><?php echo $link->title ?></a>
 						</li>
 					<?php } ?>
 					<li class="nav-item dropdown text-nowrap">
 						<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown01">
-							<?php foreach( get_categories() as $cat) {?>
-							<a class="dropdown-item" href="<?php echo get_home_url() . "/category/" . $cat->slug ?>"><?php echo $cat->name ?></a>
+							<?php foreach( get_categories() as $item) {?>
+							<a class="dropdown-item" href="<?php echo get_home_url() . "/category/" . $item->slug ?>"><?php echo $item->name ?></a>
+							<?php } ?>
+						</div>
+					</li>
+					<li class="nav-item dropdown text-nowrap">
+						<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tags</a>
+						<div class="dropdown-menu" aria-labelledby="dropdown01">
+							<?php foreach( $tags as $item) {?>
+							<a class="dropdown-item" href="<?php echo get_home_url() . "/tag/" . $item->slug ?>"><?php echo $item->name ?></a>
 							<?php } ?>
 						</div>
 					</li>
 				</ul>
-				<?php get_search_form() ?>
+				<?php get_search_form(["header"=>false]) ?>
 			</div>
 		</div>
 	</nav>
@@ -62,7 +88,8 @@
 						<?php get_sidebar(); ?>
 					</div>
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-8 order-first">
 					<div id="content" class="site-content">
+						
 
 

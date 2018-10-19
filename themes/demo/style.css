@@ -15,7 +15,7 @@ Text Domain: demo
 
 body, td, input, select, textarea {
 	font-family: Georgia, Times, 'Times New Roman', serif;
-	font-size: 12pt;
+	font-size: 14pt;
 }
 
 body{
@@ -49,4 +49,8 @@ main {
 
 h2 {
 	font-size: 1.6em;
+}
+
+.custom-logo{
+	border-radius: 5px 5px;
 }
