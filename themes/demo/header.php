@@ -34,7 +34,7 @@
 
 	<nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
 		<div class="navbar navbar-dark col-md-auto ">
-			<a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+			<a class="navbar-brand" href="<?php echo esc_url( home_url() ); ?>" rel="home">
 			<div class="row">
 				<div class="col-xs-auto">
 					<img class="custom-logo" src="<?php echo esc_url($logourl) ?>" height=80 >
@@ -50,7 +50,7 @@
 			<div class="row navbar navbar-dark  navbar-expand ">
 				<ul class="navbar-nav mx-auto">
 					<li class="nav-item active">
-						<a class="nav-link" href="./">Home <span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="<?php echo esc_url( home_url() ); ?>">Home <span class="sr-only">(current)</span></a>
 					</li>
 					<?php 
 						if ($primaryNav) foreach( $primaryNav as $idx => $link) {?>
@@ -62,7 +62,7 @@
 						<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown01">
 							<?php foreach( get_categories() as $item) {?>
-							<a class="dropdown-item" href="<?php echo get_home_url() . "/category/" . $item->slug ?>"><?php echo $item->name ?></a>
+							<a class="dropdown-item" href="<?php echo esc_url(home_url() . "/category/" . $item->slug) ?>"><?php echo $item->name ?></a>
 							<?php } ?>
 						</div>
 					</li>
@@ -70,7 +70,7 @@
 						<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tags</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown01">
 							<?php foreach( $tags as $item) {?>
-							<a class="dropdown-item" href="<?php echo get_home_url() . "/tag/" . $item->slug ?>"><?php echo $item->name ?></a>
+							<a class="dropdown-item" href="<?php echo esc_url(home_url() . "/tag/" . $item->slug) ?>"><?php echo $item->name ?></a>
 							<?php } ?>
 						</div>
 					</li>
