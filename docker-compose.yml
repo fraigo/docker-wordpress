@@ -17,9 +17,9 @@ services:
        - db
      image: wordpress:latest
      volumes:
-       - ./data:/home/wpdata
-       - ./plugins:/var/www/html/wp-content/plugins
-       - ./themes:/var/www/html/wp-content/themes
+       - ./data:/home/wpdata:rw
+       - ./plugins/demo:/var/www/html/wp-content/plugins/demo
+       - ./themes/demo:/var/www/html/wp-content/themes/demo
      ports:
        - 8000:80
      restart: always
