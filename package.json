@@ -6,9 +6,11 @@
   "scripts": {
     "start": "docker-compose up -d",
     "stop": "docker-compose down",
-    "open": "xdg-open http://localhost:8000",
+    "clean": "docker volume prune",
+    "wordpress": "xdg-open http://localhost:8000 2>&1 | open http://localhost:8000",
+    "phpmyadmin": "xdg-open http://localhost:8002 2>&1 | open http://localhost:8002",
     "console": "docker-compose exec wordpress bash",
-    "perm": "chmod -R 777 themes && chmod -R 777 plugins && chmod -R 777 data",
+    "permissions": "chmod -R 777 themes && chmod -R 777 plugins && chmod -R 777 data && chmod -R 777 uploads",
     "help" : "echo 'npm run [start|stop|open|console]'"
   },
   "repository": {
