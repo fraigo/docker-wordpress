@@ -9,10 +9,17 @@
 
 if ( has_nav_menu( 'primary' ) || has_nav_menu( 'social' ) || is_active_sidebar( 'sidebar-1' )  ) : ?>
 	<div id="secondary" class="secondary">
-
+		
 		<?php if ( has_nav_menu( 'primary' ) ) : ?>
 			<nav id="site-navigation" class="main-navigation" role="navigation">
 				<?php
+					$menuLocations = get_nav_menu_locations(); 
+					$primaryNav = wp_get_nav_menu_object($menuLocations['primary']);
+					if($primaryNav && $primaryNav->name!=""){
+				?>
+					<h2><?php echo $primaryNav->name ?></h2>
+				<?php
+				    }
 					// Primary navigation menu.
 					wp_nav_menu( array(
 						'menu_class'     => 'nav-menu',
