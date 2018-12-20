@@ -110,6 +110,7 @@ function demo_scripts() {
 	
 	// Load our main stylesheet.
 	wp_enqueue_style( 'demo-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'demo-custom-style', get_template_directory_uri() . '/css/custom.css');
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -132,3 +133,16 @@ function demo_post_thumbnail(){
 function demo_entry_meta(){
 	
 }
+
+
+function my_plugin_menu() {
+	add_theme_page('My Plugin Theme', 'Demo Theme', 'edit_theme_options', 'demo-theme-options', 'my_plugin_function');
+}
+
+function my_plugin_function(){
+	include(dirname(__FILE__)."/theme_options.php");
+}
+
+add_action('admin_menu', 'my_plugin_menu');
+
+

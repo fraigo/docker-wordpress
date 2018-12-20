@@ -13,17 +13,12 @@ Text Domain: demo
 */
 
 
-body, td, input, select, textarea {
-	font-family: Georgia, Times, 'Times New Roman', serif;
-	font-size: 14pt;
-}
-
 body{
 	position: relative;
 }
 
-main {
-	
+a:link, a:hover, a:active, a:visited {
+	color: #444;
 }
 
 .widget ul {
@@ -87,4 +82,53 @@ h2 {
 
 .comment-form #submit{
 	padding:6px 8px;
+}
+
+
+
+body > .main-page {
+	background-size: cover;
+	background-repeat: no-repeat;
+	height:100vh;
+}
+
+.site-brand {
+	display: flex;
+    align-items: center;
+}
+
+.site-title{
+	margin-top: 6px;
+	margin-bottom: 0px;
+	font-size: 24pt;
+}
+
+.site-menu{
+	justify-content: flex-end;
+}
+
+@media (max-width:800px){
+	.site-menu{
+		justify-content: center;
+	}
+	.site-brand{
+		justify-content: center;
+	}
+}
+
+.main-content{
+	margin: 30px;
+}
+
+
+.card {
+	background-color: inherit;
+	margin-top:30px;
+	border:0px;
+}
+
+.card-content{
+	background-color: rgba(255,255,255,0.3);
+	border-radius: 9px;
+	margin:6px;
 }

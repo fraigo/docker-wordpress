@@ -8,6 +8,10 @@
  * @subpackage Demo
  * @since Demo 1.0
  */
+
+include(dirname(__FILE__)."/options.php");
+$theme_values = get_theme_values($theme_options);
+
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?> class="no-js">
 <head>
@@ -15,8 +19,17 @@
 	<meta name="viewport" content="width=device-width">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+	<?php if ($theme_values["demo_google_font"]) { ?>
+	<link href="https://fonts.googleapis.com/css?family=<?php echo $theme_values["demo_google_font"] ?>" rel="stylesheet">
+	<?php } ?>
 	<link rel="stylesheet" href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" >
 	<?php wp_head(); ?>
+	<style>
+	body, td, input, select, textarea {
+		font-family: <?php echo $theme_values["demo_font_family"] ?>;
+		font-size: <?php echo $theme_values["demo_font_size"] ?>pt;
+	}
+	</style>
 </head>
 <?php
 	$logo=get_custom_logo();
@@ -40,26 +53,33 @@
 			]
 		];
 	}
+
+	
+
+
 ?>
 <body <?php body_class(); ?> >
-	<div class="main-page">
-	<nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
-		<div class="navbar navbar-dark col-md-auto ">
+	<div class="main-page" style="background-image:url(<?php echo $theme_values["demo_background_image"] ?>)">
+	<nav class="navbar site-navbar navbar-expand-md <?php echo $theme_values["demo_navbar_class"] ?> sticky-top" 
+	style="background-color:<?php echo $theme_values["demo_background_color"]?>" >
+		<div class="navbar site-brand <?php echo $theme_values["demo_navbar_class"] ?> col-md-auto ">
 			<a class="navbar-brand" href="<?php echo esc_url( home_url() ); ?>" rel="home">
 			<div class="row">
 				<div class="col-xs-auto">
 					<img class="custom-logo" src="<?php echo esc_url($logourl) ?>" height=80 >
 				</div>
-				<div class="col-xs-auto ml-2">
+				<div class="site-brand col-xs-auto ml-2">
 					<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
+					<?php if (get_bloginfo( 'description', 'display' )){ ?>
 					<small  class="site-subtitle"><?php echo get_bloginfo( 'description', 'display' ); ?></small>
+					<?php } ?>
 				</div>
 			</div>
 			</a>
 		</div>
 		<div class="col-md">
-			<div class="row navbar navbar-dark  navbar-expand ">
-				<ul class="navbar-nav mx-auto">
+			<div class="row site-menu navbar <?php echo $theme_values["demo_navbar_class"] ?> navbar-expand ">
+				<ul class="navbar-nav ">
 					<?php 
 						foreach( $primaryMenu as $idx => $menu) {
 							if ($menu->title=="Categories"){
@@ -104,20 +124,20 @@
 	 <div class="row">
 			<div class="card col-sm-4 text-center">
 				<div class="card-content">
-					<h2>Titulo1</h2>
-					<p>Contenido 1</p>
+					<h2>Title1</h2>
+					<p>Content 1</p>
 				</div>
 			</div>
 			<div class="card col-sm-4 text-center">
 				<div class="card-content">
-					<h2>Titulo2</h2>
-					<p>Contenido 2</p>
+					<h2>Title2</h2>
+					<p>Content 2</p>
 				</div>
 			</div>
 			<div class="card col-sm-4 text-center">
 				<div class="card-content">
-					<h2>Titulo3</h2>
-					<p>Contenido 3</p>
+					<h2>Title3</h2>
+					<p>Content 3</p>
 				</div>
 			</div>
 	 </div>
