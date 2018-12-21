@@ -23,8 +23,11 @@ Docker/Wordpress for Development
 ### Database administration
 * `npm run phpmyadmin` to open the PhpMyAdmin site @ `http://localhost:8002`
 * `npm run dbconsole` to open a Bash console from the mysql server
-* `npm run query "sqlquery"` to run a SQL query in mysql server
-* `npm run backup` to run a SQL query in mysql server
+* `npm run query "sqlquery"` to run a SQL query in mysql server. Example `npm run query "SHOW TABLES"`
+* `npm run backup` to create a database backup in `./data/backup/backup.YYYYMMDD.hhmmss.sql`
+
+
+
 
 
 

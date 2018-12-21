@@ -1,7 +1,6 @@
 .DS_Store
 akismet
 plugins/hello.php
-data/backup.sql
 uploads/2018
 
 !plugins/demo/*

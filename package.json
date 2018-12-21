@@ -14,7 +14,7 @@
     "backup": "docker-compose exec db bash /home/wpdata/backup.sh",
     "query": "docker-compose exec db bash /home/wpdata/query.sh",
     "permissions": "chmod -R 777 themes && chmod -R 777 plugins && chmod -R 777 data && chmod -R 777 uploads",
-    "help" : "echo 'npm run [start|stop|open|console]'"
+    "help" : "echo 'npm run [start|stop|reset|wordpress|phpmyadmin|wpconsole|dbconsole]'"
   },
   "repository": {
     "type": "git",
