@@ -14,6 +14,8 @@ A Docker-based Wordpress development environment. Includes:
 
 ## Project Commands
 
+Note: The *Docker service* must be running before trying to start the containers.
+
 ### Services
 
 * `npm run start` to start the environment
