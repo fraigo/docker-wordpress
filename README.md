@@ -1,14 +1,18 @@
 Docker/Wordpress for Development
 ========================
 
+A Docker-based Wordpress development environment. Includes:
 
-## Containers
+* Wordpress 5.0  using PHP 7.2.13
+* PHPMyAdmin 4.8.4
+* Mysql 5.7
 
-* `db` Mysql5.7
-* `wordpress` Wordpress @ `http://localhost:8000`
-* `myadmin` PhpMyAdmin @ `http://localhost:8002`
+## Requirements
 
-## Commands
+* Docker/Docker-compose for running containers
+* Node.js/npm for running project commands
+
+## Project Commands
 
 ### Services
 
@@ -26,7 +30,21 @@ Docker/Wordpress for Development
 * `npm run query "sqlquery"` to run a SQL query in mysql server. Example `npm run query "SHOW TABLES"`
 * `npm run backup` to create a database backup in `./data/backup/backup.YYYYMMDD.hhmmss.sql`
 
+## Folders
 
+* `data` : To store sql and backup files, and to run database commands (backup)
+* `docker` : To create a Wordpress image using your current development
+* `plugins` : Includes a Demo plugin for Wordpress plugin development. Synchronized with `wp-content/plugins`.
+* `themes` : Includes a Demo theme for Wordpress theme development. Synchronized with `wp-content/themes`.
+* `uploads` : To store files uploaded to the wordpress installation. Synchronized with `wp-content/uploads`.
+
+## Docker-compose
+
+This file contains the current Wordpress services with 3 containers:
+
+* `db` Mysql5.7 using port `3306`
+* `wordpress` Wordpress @ `http://localhost:8000`
+* `myadmin` PhpMyAdmin @ `http://localhost:8002`
 
 
 
