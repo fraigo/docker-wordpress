@@ -81,12 +81,19 @@ $theme_values = get_theme_values($theme_options);
 			<div class="row site-menu navbar <?php echo $theme_values["demo_navbar_class"] ?> navbar-expand ">
 				<ul class="navbar-nav ">
 					<?php 
+					    $subitems=[];
 						foreach( $primaryMenu as $idx => $menu) {
+							if (!$subitems[$menu->menu_item_parent]){
+								$subitems[$menu->menu_item_parent]=[];
+							}
+							$subitems[$menu->menu_item_parent][]=$menu;
+						}
+					    foreach( $primaryMenu as $idx => $menu) {
 							if ($menu->title=="Categories"){
 								?>
 								<li class="nav-item dropdown text-nowrap">
-									<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
-									<div class="dropdown-menu" aria-labelledby="dropdown01">
+									<a class="nav-link dropdown-toggle" href="" id="dropdown_categories" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
+									<div class="dropdown-menu" aria-labelledby="dropdown_categories">
 										<?php foreach( get_categories() as $item) {?>
 										<a class="dropdown-item" href="<?php echo esc_url(home_url() . "/category/" . $item->slug) ?>"><?php echo $item->name ?></a>
 										<?php } ?>
@@ -98,14 +105,30 @@ $theme_values = get_theme_values($theme_options);
 							if ($menu->title=="Tags"){
 								?>
 								<li class="nav-item dropdown text-nowrap">
-									<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tags</a>
-									<div class="dropdown-menu" aria-labelledby="dropdown01">
+									<a class="nav-link dropdown-toggle" href="" id="dropdown_tags" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tags</a>
+									<div class="dropdown-menu" aria-labelledby="dropdown_tags">
 										<?php foreach( $tags as $item) {?>
 										<a class="dropdown-item" href="<?php echo esc_url(home_url() . "/tag/" . $item->slug) ?>"><?php echo $item->name ?></a>
 										<?php } ?>
 									</div>
 								</li>
 								<?php
+								continue;
+							}
+							if ($menu->menu_item_parent>0){
+								continue;
+							}
+							if (@count($subitems[$menu->ID])){
+					?>
+						<li class="nav-item dropdown text-nowrap <?php echo $menu->active ?>">
+							<a class="nav-link dropdown-toggle" href="#" id="menu_<?php echo $menu->ID ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $menu->title ?></a>
+							<div class="dropdown-menu" aria-labelledby="menu_<?php echo $menu->ID ?>">
+								<?php foreach( $subitems[$menu->ID] as $submenu) {?>
+								<a class="dropdown-item" href="<?php echo $submenu->url ?>"><?php echo $submenu->title ?></a>
+								<?php } ?>
+							</div>
+						</li>
+					<?php				
 								continue;
 							}
 					?>
@@ -156,6 +179,6 @@ $theme_values = get_theme_values($theme_options);
 				*/ ?>>
 				<div class="col-md-12 order-first">
 					<div id="content" class="site-content">
+					
 						
-
 
