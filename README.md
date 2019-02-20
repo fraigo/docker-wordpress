@@ -35,7 +35,6 @@ Note: The *Docker service* must be running before trying to start the containers
 ## Folders
 
 * `data` : To store sql and backup files, and to run database commands (backup)
-* `docker` : To create a Wordpress image using your current development
 * `plugins` : Includes a Demo plugin for Wordpress plugin development. Synchronized with `wp-content/plugins`.
 * `themes` : Includes a Demo theme for Wordpress theme development. Synchronized with `wp-content/themes`.
 * `uploads` : To store files uploaded to the wordpress installation. Synchronized with `wp-content/uploads`.

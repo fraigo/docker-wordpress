@@ -1,7 +1,1 @@
 .DS_Store
-akismet
-plugins/hello.php
-uploads/2018
-
-!plugins/demo/*
-plugins/*
