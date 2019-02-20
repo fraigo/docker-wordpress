@@ -4,7 +4,7 @@ services:
    db:
      image: mysql:5.7
      volumes:
-       - ./data:/home/wpdata:rw
+       - ./data:/root/data:rw
      restart: always
      environment:
        MYSQL_ROOT_PASSWORD: wproot
