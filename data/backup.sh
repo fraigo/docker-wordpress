@@ -1,2 +1,4 @@
 export TIMESTAMP=$(date +%Y%m%d.%H%M%S)
-mysqldump -u root -p$MYSQL_ROOT_PASSWORD --opt wordpress > /root/data/backups/backup.$TIMESTAMP.sql
+export FILENAME=backups/backup.$TIMESTAMP.sql
+echo "Backup database $FILENAME"
+mysqldump -u root -p$MYSQL_ROOT_PASSWORD --opt wordpress > /root/data/$FILENAME
