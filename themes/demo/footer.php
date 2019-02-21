@@ -8,6 +8,7 @@
  * @subpackage Demo
  * @since Demo 1.0
  */
+$themepath=esc_url(home_url() . "/wp-content/themes/" . basename(dirname(__FILE__)));
 ?>
 				</div>
 			</div>
@@ -34,9 +35,9 @@
     </footer>
 
 <?php wp_footer(); ?>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js" ></script>
-<script src="https://getbootstrap.com/docs/4.1/dist/js/bootstrap.min.js" ></script>
+<script src="<?php echo $themepath ?>/js/jquery-3.3.1.slim.min.js"></script>
+<script src="<?php echo $themepath ?>/js/popper.min.js" ></script>
+<script src="<?php echo $themepath ?>/js/bootstrap.min.js" ></script>
 
 </body>
 </html>

@@ -11,6 +11,7 @@
 
 include(dirname(__FILE__)."/options.php");
 $theme_values = get_theme_values($theme_options);
+$themepath=esc_url(home_url() . "/wp-content/themes/" . basename(dirname(__FILE__)));
 
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?> class="no-js">
@@ -22,7 +23,7 @@ $theme_values = get_theme_values($theme_options);
 	<?php if ($theme_values["demo_google_font"]) { ?>
 	<link href="https://fonts.googleapis.com/css?family=<?php echo $theme_values["demo_google_font"] ?>" rel="stylesheet">
 	<?php } ?>
-	<link rel="stylesheet" href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" >
+	<link rel="stylesheet" href="<?php echo $themepath ?>/css/bootstrap.min.css" >
 	<?php wp_head(); ?>
 	<style>
 	body, td, input, select, textarea {
