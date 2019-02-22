@@ -28,7 +28,7 @@ $themepath=esc_url(home_url() . "/wp-content/themes/" . basename(dirname(__FILE_
 				}
 				?>
 				<a href="<?php echo esc_url( __( 'https://franciscoigor.me/', 'demo' ) ); ?>" class="imprint">
-					<?php printf( __( 'Proudly powered by %s', 'demo' ), 'Francisco Igor' ); ?>
+					<small><?php printf( __( 'Theme by %s', 'demo' ), 'Francisco Igor' ); ?></small>
 				</a>
 			</div><!-- .site-info -->
       </div>
@@ -38,6 +38,26 @@ $themepath=esc_url(home_url() . "/wp-content/themes/" . basename(dirname(__FILE_
 <script src="<?php echo $themepath ?>/js/jquery-3.3.1.slim.min.js"></script>
 <script src="<?php echo $themepath ?>/js/popper.min.js" ></script>
 <script src="<?php echo $themepath ?>/js/bootstrap.min.js" ></script>
-
+<script>
+function updateNav(ev){
+	var el=document.documentElement;
+	var top= el.pageYOffset !== undefined ? el.pageYOffset : el.scrollTop;
+	var nav=document.getElementById("site-navbar");
+	var classNames=nav.className.split(" ");
+	var pos=classNames.indexOf("scrolling");
+	if (top>0){
+		if (pos==-1){
+			classNames.push("scrolling");
+		}
+	}else{
+		if (pos>=0){
+			classNames.splice(pos,1);
+		}
+	}
+	nav.className=classNames.join(" ");
+}
+window.onscroll=updateNav;
+window.onload=updateNav;
+</script>
 </body>
 </html>

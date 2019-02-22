@@ -29,6 +29,10 @@ $themepath=esc_url(home_url() . "/wp-content/themes/" . basename(dirname(__FILE_
 	body, td, input, select, textarea {
 		font-family: <?php echo $theme_values["demo_font_family"] ?>;
 		font-size: <?php echo $theme_values["demo_font_size"] ?>pt;
+		color: <?php echo $theme_values["demo_font_color"] ?>;
+	}
+	a:link, a:visited, a:hover, a:active {
+		color: <?php echo $theme_values["demo_font_color"] ?>;
 	}
 	</style>
 </head>
@@ -55,24 +59,38 @@ $themepath=esc_url(home_url() . "/wp-content/themes/" . basename(dirname(__FILE_
 		];
 	}
 
+	//250,253,1168
+	$header_post_numbers=[1,2,3];
+	$header_posts=[];
+	foreach($header_post_numbers as $num){
+		$postId = $theme_values["demo_header$num"];
+		if (is_numeric($postId) && count($header_posts)<3){
+			$header_posts[]=get_post($postId);
+		}
+	}
+	if (count($header_posts)){
+		$colnum=12/count($header_posts);
+	}
+	$col_class="col-sm-$colnum";
+	
 	
 
 
 ?>
 <body <?php body_class(); ?> >
 	<div class="main-page" style="background-image:url(<?php echo $theme_values["demo_background_image"] ?>)">
-	<nav class="navbar site-navbar navbar-expand-md <?php echo $theme_values["demo_navbar_class"] ?> sticky-top" 
+	<nav id="site-navbar" class="navbar site-navbar navbar-expand-md <?php echo $theme_values["demo_navbar_class"] ?> sticky-top" 
 	style="background-color:<?php echo $theme_values["demo_background_color"]?>" >
 		<div class="navbar site-brand <?php echo $theme_values["demo_navbar_class"] ?> col-md-auto ">
 			<a class="navbar-brand" href="<?php echo esc_url( home_url() ); ?>" rel="home">
 			<div class="row">
 				<div class="col-xs-auto">
-					<img class="custom-logo" src="<?php echo esc_url($logourl) ?>" height=80 >
+					<img class="custom-logo" src="<?php echo esc_url($logourl) ?>" >
 				</div>
 				<div class="site-brand col-xs-auto ml-2">
 					<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
 					<?php if (get_bloginfo( 'description', 'display' )){ ?>
-					<small  class="site-subtitle"><?php echo get_bloginfo( 'description', 'display' ); ?></small>
+					<div  class="site-subtitle"><?php echo get_bloginfo( 'description', 'display' ); ?></div>
 					<?php } ?>
 				</div>
 			</div>
@@ -145,25 +163,15 @@ $themepath=esc_url(home_url() . "/wp-content/themes/" . basename(dirname(__FILE_
 		</div>
 	</nav>
 	<div class="main-content">
-	 <div class="row">
-			<div class="card col-sm-4 text-center">
+	 <div class="row site-cards">
+	 	<?php foreach($header_posts as $p){ ?>
+			<div class="card <?php echo $col_class ?> text-center">
 				<div class="card-content">
-					<h2>Title1</h2>
-					<p>Content 1</p>
+					<h2 class="card-title"><?php echo $p->post_title ?></h2>
+					<p class="card-text"><?php echo $p->post_content ?></p>
 				</div>
 			</div>
-			<div class="card col-sm-4 text-center">
-				<div class="card-content">
-					<h2>Title2</h2>
-					<p>Content 2</p>
-				</div>
-			</div>
-			<div class="card col-sm-4 text-center">
-				<div class="card-content">
-					<h2>Title3</h2>
-					<p>Content 3</p>
-				</div>
-			</div>
+		<?php } ?>
 	 </div>
 	</div>
 	</div>
@@ -177,7 +185,7 @@ $themepath=esc_url(home_url() . "/wp-content/themes/" . basename(dirname(__FILE_
 						<?php get_sidebar(); ?>
 					</div>
 				</div>
-				*/ ?>>
+				*/ ?>
 				<div class="col-md-12 order-first">
 					<div id="content" class="site-content">
 					
