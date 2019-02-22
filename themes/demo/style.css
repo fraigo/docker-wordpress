@@ -167,3 +167,7 @@ body > .main-page {
 .card-title{
 	height: 2.2em;
 }
+
+.rounded {
+	border-radius:99% 99% !important;
+}
