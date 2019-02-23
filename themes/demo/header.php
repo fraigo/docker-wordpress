@@ -12,6 +12,8 @@
 include(dirname(__FILE__)."/options.php");
 $theme_values = get_theme_values($theme_options);
 $themepath=esc_url(home_url() . "/wp-content/themes/" . basename(dirname(__FILE__)));
+$header_type=$theme_values["demo_header_type"];
+
 
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?> class="no-js">
@@ -163,8 +165,7 @@ $themepath=esc_url(home_url() . "/wp-content/themes/" . basename(dirname(__FILE_
 		</div>
 	</nav>
 	<div class="main-content">
-		<?php //include("components/cards.php") ?>
-		<?php include("components/slides.php") ?>
+		<?php include("components/{$header_type}.php") ?>
 	</div>
 	</div>
 		

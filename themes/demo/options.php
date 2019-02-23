@@ -65,6 +65,16 @@ $theme_options=[
         "content" => " Slide to change",
         "default" => "14",
     ],
+    "demo_header_type" => [
+        "text" => "Header type",
+        "control" => "select",
+        "attributes" => [
+            "size" => "1",
+        ],
+        "content" => "<option value=cards >Cards</option><option value=slides >Slides</option>",
+        "default" => "cards",
+        "post" => "",
+    ],
     "demo_header1" => [
         "text" => "Home page card 1",
         "attributes" => [

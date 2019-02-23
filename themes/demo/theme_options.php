@@ -43,11 +43,17 @@ foreach($posts as $post){
      $htmlAttributes = array2attributes($attributes);
      $control = $item["control"]?:"input";
      $content = $item["content"];
+     $post = $item["post"];
      $closetag = $control=="input"?"":"</$control>"
     ?>
     <h3><?php echo $item["text"] ?></h3>
-    <<?php echo $control ?> <?php echo $htmlAttributes ?> ><?php echo $content ?><?php echo $closetag ?>
+    <<?php echo $control ?> id="<?php echo $option ?>" <?php echo $htmlAttributes ?> ><?php echo $content ?><?php echo $closetag ?>
+    <?php echo $post ?>
+    <script>
+        document.getElementById('<?php echo $option ?>').value="<?php echo $theme_values[$option]; ?>";
+    </script>
 <?php } ?>
+        
     <br>
     <input type="submit" value="Save">
 </form>
