@@ -38,12 +38,21 @@ $theme_options=[
         ],
         "default" => "Lora, Georgia, Times, serif",
     ],
-    "demo_font_color" => [
-        "text" => "Default Font color",
+    "demo_primary_color" => [
+        "text" => "Primary color",
         "attributes" => [
-            "size" => "50"
+            "type" => "color",
+            "size" => "20",
         ],
         "default" => "#000",
+    ],
+    "demo_secondary_color" => [
+        "text" => "Secondary color",
+        "attributes" => [
+            "type" => "color",
+            "size" => "20"
+        ],
+        "default" => "#666",
     ],
     "demo_font_size" => [
         "text" => "Font Size",

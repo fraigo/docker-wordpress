@@ -48,7 +48,7 @@ h2 {
 
 .custom-logo{
 	border-radius: 5px 5px;
-	height:80px;
+	height:60px;
 }
 
 
@@ -96,7 +96,9 @@ body > .main-page {
 .site-brand {
 	display: flex;
 	flex-direction: column;
-    justify-content: center;
+	justify-content: center;
+	margin: 0px;
+    padding: 0px 20px;
 }
 
 .site-title{
@@ -110,18 +112,45 @@ body > .main-page {
 }
 
 .site-navbar{
+	position: fixed;
+	top:0px;
+    width: 100%;
+    z-index: 1000;
 	transition: linear 0.5s;
-	background-image: linear-gradient(rgba(255,255,255,1.0),rgba(255,255,255,0.7),rgba(255,255,255,0.0));
+	background-image: linear-gradient(rgba(255,255,255,0.8),rgba(255,255,255,0.6),rgba(255,255,255,0.0));
 }
 
 .site-navbar.scrolling  {
-	box-shadow: 0px 5px 5px rgba(128,128,128,0.5); 
+	box-shadow: 0px 5px 5px rgba(200,200,200,0.5); 
 	background-color: rgba(255,255,255,0.9);
-	--background-image: linear-gradient(rgba(255,255,255,1.0),rgba(255,255,255,0.8),rgba(255,255,255,0.1));
 }
 
 .site-cards{
 	font-size: 1rem;
+	margin-top:0px;
+}
+
+.site-slide{
+	height:100vh;
+}
+
+.site-slide .carousel-item{
+	background-size: cover;
+	height:100vh;
+}
+
+.site-slide .carousel-item > .carousel-overlay{
+	background-color: rgba(255,255,255,0.4);
+	padding:20px;
+	height:100vh;
+	display: flex;
+    flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.site-slide .carousel-overlay > .carousel-content{
+	max-width:800px;
 }
 
 @media (max-width:800px){
@@ -145,14 +174,16 @@ body > .main-page {
 }
 
 .main-content{
-	margin: 30px;
+	margin: 0px;
 }
 
 
 .card {
 	background-color: inherit;
-	margin-top:30px;
+	margin-top:0px;
 	border:0px;
+	height: 100vh;
+    justify-content: center;
 }
 
 .card-content{
@@ -161,8 +192,11 @@ body > .main-page {
 	border-radius: 9px;
 	margin:6px;
 	padding:4px;
-	flex:1;
 	color: #000;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .card-title{

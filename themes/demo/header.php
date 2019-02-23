@@ -29,10 +29,10 @@ $themepath=esc_url(home_url() . "/wp-content/themes/" . basename(dirname(__FILE_
 	body, td, input, select, textarea {
 		font-family: <?php echo $theme_values["demo_font_family"] ?>;
 		font-size: <?php echo $theme_values["demo_font_size"] ?>pt;
-		color: <?php echo $theme_values["demo_font_color"] ?>;
+		color: <?php echo $theme_values["demo_primary_color"] ?>;
 	}
 	a:link, a:visited, a:hover, a:active {
-		color: <?php echo $theme_values["demo_font_color"] ?>;
+		color: <?php echo $theme_values["demo_primary_color"] ?>;
 	}
 	</style>
 </head>
@@ -163,19 +163,11 @@ $themepath=esc_url(home_url() . "/wp-content/themes/" . basename(dirname(__FILE_
 		</div>
 	</nav>
 	<div class="main-content">
-	 <div class="row site-cards">
-	 	<?php foreach($header_posts as $p){ ?>
-			<div class="card <?php echo $col_class ?> text-center">
-				<div class="card-content">
-					<?php echo get_the_post_thumbnail($p->ID,[100,100],["class"=>"rounded"]) ?>
-					<h2 class="card-title"><?php echo $p->post_title ?></h2>
-					<p class="card-text"><?php echo $p->post_content ?></p>
-				</div>
-			</div>
-		<?php } ?>
-	 </div>
+		<?php //include("components/cards.php") ?>
+		<?php include("components/slides.php") ?>
 	</div>
 	</div>
+		
  <main role="main">
 	 <div class="container">
 			<div class="row p-0">
