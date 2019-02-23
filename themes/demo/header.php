@@ -114,7 +114,7 @@ $header_type=$theme_values["demo_header_type"];
 								?>
 								<li class="nav-item dropdown text-nowrap">
 									<a class="nav-link dropdown-toggle" href="" id="dropdown_categories" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
-									<div class="dropdown-menu" aria-labelledby="dropdown_categories">
+									<div class="nav-submenu dropdown-menu" aria-labelledby="dropdown_categories">
 										<?php foreach( get_categories() as $item) {?>
 										<a class="dropdown-item" href="<?php echo esc_url(home_url() . "/category/" . $item->slug) ?>"><?php echo $item->name ?></a>
 										<?php } ?>
@@ -127,7 +127,7 @@ $header_type=$theme_values["demo_header_type"];
 								?>
 								<li class="nav-item dropdown text-nowrap">
 									<a class="nav-link dropdown-toggle" href="" id="dropdown_tags" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tags</a>
-									<div class="dropdown-menu" aria-labelledby="dropdown_tags">
+									<div class="nav-submenu dropdown-menu" aria-labelledby="dropdown_tags">
 										<?php foreach( $tags as $item) {?>
 										<a class="dropdown-item" href="<?php echo esc_url(home_url() . "/tag/" . $item->slug) ?>"><?php echo $item->name ?></a>
 										<?php } ?>
@@ -143,7 +143,7 @@ $header_type=$theme_values["demo_header_type"];
 					?>
 						<li class="nav-item dropdown text-nowrap <?php echo $menu->active ?>">
 							<a class="nav-link dropdown-toggle" href="#" id="menu_<?php echo $menu->ID ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $menu->title ?></a>
-							<div class="dropdown-menu" aria-labelledby="menu_<?php echo $menu->ID ?>">
+							<div class="nav-submenu dropdown-menu" aria-labelledby="menu_<?php echo $menu->ID ?>">
 								<?php foreach( $subitems[$menu->ID] as $submenu) {?>
 								<a class="dropdown-item" href="<?php echo $submenu->url ?>"><?php echo $submenu->title ?></a>
 								<?php } ?>

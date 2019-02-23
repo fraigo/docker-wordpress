@@ -125,6 +125,10 @@ body > .main-page {
 	background-color: rgba(255,255,255,0.9);
 }
 
+.nav-submenu{
+	margin-left: -15px;
+}
+
 .site-cards{
 	font-size: 1rem;
 	margin-top:0px;
@@ -140,7 +144,7 @@ body > .main-page {
 }
 
 .site-slide .carousel-item > .carousel-overlay{
-	background-color: rgba(255,255,255,0.4);
+	background-color: rgba(128,128,128,0.4);
 	padding:20px;
 	height:100vh;
 	display: flex;
@@ -151,6 +155,16 @@ body > .main-page {
 
 .site-slide .carousel-overlay > .carousel-content{
 	max-width:800px;
+	margin: 40px 20px;
+	color: #fff;
+	text-shadow: 0px 0px 4px #000;
+}
+
+.carousel-content button {
+	border: 0px;
+	border-radius: 5px;
+	background-color: rgba(255,255,255,0.6);
+	padding:8px 10px;
 }
 
 @media (max-width:800px){
