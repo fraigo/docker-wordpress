@@ -90,7 +90,6 @@ h2 {
 body > .main-page {
 	background-size: cover;
 	background-repeat: no-repeat;
-	height:100vh;
 }
 
 .site-brand {
@@ -117,7 +116,6 @@ body > .main-page {
     width: 100%;
     z-index: 1000;
 	transition: linear 0.5s;
-	background-image: linear-gradient(rgba(255,255,255,0.8),rgba(255,255,255,0.6),rgba(255,255,255,0.0));
 }
 
 .site-navbar.scrolling  {
@@ -140,13 +138,12 @@ body > .main-page {
 
 .site-slide .carousel-item{
 	background-size: cover;
-	height:100vh;
+	background-position: center center;
 }
 
 .site-slide .carousel-item > .carousel-overlay{
 	background-color: rgba(128,128,128,0.4);
 	padding:20px;
-	height:100vh;
 	display: flex;
     flex-direction: column;
 	justify-content: flex-end;
@@ -163,7 +160,6 @@ body > .main-page {
 .carousel-content button {
 	border: 0px;
 	border-radius: 5px;
-	background-color: rgba(255,255,255,0.6);
 	padding:8px 10px;
 }
 
@@ -196,8 +192,7 @@ body > .main-page {
 	background-color: inherit;
 	margin-top:0px;
 	border:0px;
-	height: 100vh;
-    justify-content: center;
+	justify-content: center;
 }
 
 .card-content{
@@ -214,7 +209,26 @@ body > .main-page {
 }
 
 .card-title{
-	height: 2.2em;
+	height: 2.2em;	
+}
+
+.card-text{
+	max-width: 350px;
+}
+
+
+.page-header{
+	background-size: cover;
+	background-position: center center;
+	height:50vh;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.empty-header{
+	margin-top:120px;
 }
 
 .rounded {

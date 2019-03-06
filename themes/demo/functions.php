@@ -149,3 +149,29 @@ function my_plugin_function(){
 add_action('admin_menu', 'my_plugin_menu');
 
 
+function wpb_widgets_init() {
+
+    register_sidebar( array(
+        'name'          => 'Header Content',
+        'id'            => 'custom-header-widget',
+        'before_widget' => '<div class="header-widget">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h2 class="header-widget-title">',
+        'after_title'   => '</h2>',
+    ) );
+ 
+}
+add_action( 'widgets_init', 'wpb_widgets_init' );
+
+
+$widget_list=scandir(dirname(__FILE__)."/widgets");
+foreach($widget_list as $widget){
+    if ($widget=="." || $widget==".."){
+        continue;
+    }
+	list($name,$ext)=explode(".",$widget);
+	if ($ext=="php"){
+		require_once(dirname(__FILE__)."/widgets/$widget");
+		$instance=new $name();
+	}
+}
