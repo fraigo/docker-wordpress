@@ -8,7 +8,7 @@ class Demo_Widget extends Base_Widget {
         
         parent::__construct("demo_widget","Demo Widget");
         
-        $this->attributes["text"]=new Widget_Prop("Content","textarea",["rows"=>"10"]);
+        $this->attributes["text"]=new Base_Prop("Content","textarea",["rows"=>"10"]);
         
         add_action( 'widgets_init', function() {
             register_widget( 'Demo_Widget' );

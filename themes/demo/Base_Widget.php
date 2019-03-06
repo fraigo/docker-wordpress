@@ -1,17 +1,79 @@
 <?php
 
-class Widget_Prop {
+class Base_Prop {
     var $label;
     var $control;
     var $attributes;
     var $content;
+    var $extra;
     
-    function __construct($label,$control,$attributes=[],$content="") {
+    function __construct($label,$control,$attributes=[],$content="",$extra="") {
         $this->label=$label;
         $this->control=$control;
         $this->attributes=$attributes;
         $this->content=$content;
+        $this->extra=$extra;
     }
+
+    function getContent($value){
+        return $this->content;
+    }
+
+    function render($widget,$field,$value){
+            $attrs = [];
+            foreach($this->attributes as $name=>$val){
+                $attrs[] = " $name=\"$val\" ";
+            }
+        ?>
+            <div>
+                <label for="<?php echo esc_attr( $widget->get_field_id( $field ) ); ?>"><?php esc_attr_e( $this->label .':', 'text_domain' ); ?></label>
+                <<?php echo $this->control?> class="widefat" id="<?php echo esc_attr( $widget->get_field_id( $field ) ); ?>" 
+                    name="<?php echo esc_attr( $widget->get_field_name( $field ) ); ?>"  <?php echo implode(" ",$attrs) ?> 
+                    value="<?php echo esc_attr( $value ); ?>"><?php echo $this->getContent($value) ?></<?php echo $this->control?>>
+                <script> document.getElementById("<?php echo ( $widget->get_field_id( $field ) ); ?>").value=<?php echo json_encode($value) ?>; </script>
+                <?php echo str_replace("{value}","$value",$this->extra) ?>
+            </div>
+        <?php
+    }
+}
+
+class Select_Prop extends Base_Prop {
+    var $options;
+    
+    function __construct($label,$attributes=[],$options=[],$extra="") {
+        parent::__construct($label,"select",$attributes,"",$extra);
+        $this->options=$options;
+    }
+
+    function getContent($value){
+        $content=[];
+        foreach($this->options as $val=>$label){
+            $selected = ($value==$val) ? "selected" : "";
+            $content[]="<option value=\"$val\" $selected >$label</option>";
+        }
+        return implode("",$content);
+    }
+}
+
+class Post_Prop extends Base_Prop {
+
+
+    function __construct($label,$attributes=[],$extra="") {
+        $attributes["list"]="posts";
+        $posts=get_posts([
+            "numberposts" => 1000,
+            "orderby" => "post_title",
+            "order" => "ASC",
+        ]);
+        $post_options=[];
+        foreach($posts as $post){
+            $post_options[]="<option value=$post->ID >$post->post_title ($post->ID)</option>";
+        }
+        $extra="<datalist id='posts'>". implode("",$post_options) ."</datalist>";
+        parent::__construct($label,"input",$attributes,"",$extra);
+
+    }
+
 }
 
 class Base_Widget extends WP_Widget {
@@ -25,7 +87,7 @@ class Base_Widget extends WP_Widget {
             $name   // Name
         );
     
-        $this->attributes["title"]=new Widget_Prop("Title","input",["type"=>"text"]);
+        $this->attributes["title"]=new Base_Prop("Title","input",["type"=>"text"]);
  
     }
  
@@ -62,18 +124,8 @@ class Base_Widget extends WP_Widget {
  
         foreach($this->attributes as $field=>$attr){
             $value = ! empty( $instance[$field] ) ? $instance[$field] : esc_html__( '', 'text_domain' );
-            $attrs = [];
-            foreach($attr->attributes as $name=>$val){
-                $attrs[] = " $name=\"$val\" ";
-            }
-            ?>
-            <p>
-                <label for="<?php echo esc_attr( $this->get_field_id( $field ) ); ?>"><?php esc_attr_e( $attr->label .':', 'text_domain' ); ?></label>
-                <<?php echo $attr->control?> class="widefat" id="<?php echo esc_attr( $this->get_field_id( $field ) ); ?>" 
-                    name="<?php echo esc_attr( $this->get_field_name( $field ) ); ?>"  <?php echo implode(" ",$attrs) ?> 
-                    value="<?php echo esc_attr( $value ); ?>"><?php echo $attr->content?></<?php echo $attr->control?>> 
-            </p>
-            <?php
+            
+            $attr->render($this,$field,$value);
         }
 
     }

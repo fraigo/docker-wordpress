@@ -2,20 +2,19 @@
 
 require_once(dirname(__FILE__)."/../Base_Widget.php");
 
-class Cards_Widget extends Base_Widget {
+class Slides_Widget extends Base_Widget {
 
     function __construct(){
         
-        parent::__construct("cards_widget","Cards Widget");
+        parent::__construct("slides_widget","Slides Widget");
         
-        $this->attributes["height"]=new Base_Prop("Card Height","input",["type"=>"text"]);
-        $this->attributes["image_class"]=new Select_Prop("Image Type",["size"=>"1"],["circled"=>"Circle","wided"=>"Wide"],"");
-        $this->attributes["post1"]=new Post_Prop("Post 1",["type"=>"text"]);
-        $this->attributes["post2"]=new Post_Prop("Post 2",["type"=>"text"]);
-        $this->attributes["post3"]=new Post_Prop("Post 3",["type"=>"text"]);
+        $this->attributes["height"]=new Base_Prop("Slide Height","input",["type"=>"text"]);
+        $this->attributes["post1"]=new Base_Prop("Post 1","input",["type"=>"number"]);
+        $this->attributes["post2"]=new Base_Prop("Post 2","input",["type"=>"number"]);
+        $this->attributes["post3"]=new Base_Prop("Post 3","input",["type"=>"number"]);
         
         add_action( 'widgets_init', function() {
-            register_widget( 'Cards_Widget' );
+            register_widget( 'Slides_Widget' );
         });
     }
 
@@ -36,10 +35,7 @@ class Cards_Widget extends Base_Widget {
         if ($instance["height"]!=''){
             $card_style="height:{$instance["height"]}";    
         }
-        if ($instance["image_class"]!=''){
-            $card_image_class=$instance["image_class"];    
-        }
-        include("$base/components/cards.php");
+        include("$base/components/slides.php");
     }
 
 }

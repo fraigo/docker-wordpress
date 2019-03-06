@@ -18,14 +18,9 @@ $posts=get_posts([
     "orderby" => "post_title",
     "order" => "ASC",
 ]);
-$post_sel=[];
 $post_options=[];
-$post_datalist=[];
-
 foreach($posts as $post){
-    $post_sel[$post->ID]=$post->post_title;
     $post_options[]="<option value=$post->ID >$post->post_title ($post->ID)</option>";
-    $post_datalist[]="<option value='$post->post_title ($post->ID)' >";
 }
 
 
