@@ -111,7 +111,7 @@ $frontPage = is_front_page();
 		<?php include("components/nav.php"); ?>
 		<div class="main-content">
 			<?php include("components/{$header_type}.php") ?>
-			<?php if ( is_active_sidebar( 'custom-header-widget' ) ) : ?>
+			<?php if ( $frontPage && is_active_sidebar( 'custom-header-widget' ) ) : ?>
 				<div id="header-widget-area" class="chw-widget-area widget-area" role="complementary">
 					<?php dynamic_sidebar( 'custom-header-widget' ); ?>
 				</div>

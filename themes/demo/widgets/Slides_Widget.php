@@ -9,9 +9,11 @@ class Slides_Widget extends Base_Widget {
         parent::__construct("slides_widget","Slides Widget");
         
         $this->attributes["height"]=new Base_Prop("Slide Height","input",["type"=>"text"]);
-        $this->attributes["post1"]=new Base_Prop("Post 1","input",["type"=>"number"]);
-        $this->attributes["post2"]=new Base_Prop("Post 2","input",["type"=>"number"]);
-        $this->attributes["post3"]=new Base_Prop("Post 3","input",["type"=>"number"]);
+        $this->attributes["post1"]=new Post_Prop("Post 1",["type"=>"text"]);
+        $this->attributes["post2"]=new Post_Prop("Post 2",["type"=>"text"]);
+        $this->attributes["post3"]=new Post_Prop("Post 3",["type"=>"text"]);
+        $this->attributes["post4"]=new Post_Prop("Post 4",["type"=>"text"]);
+        $this->attributes["post5"]=new Post_Prop("Post 5",["type"=>"text"]);
         
         add_action( 'widgets_init', function() {
             register_widget( 'Slides_Widget' );

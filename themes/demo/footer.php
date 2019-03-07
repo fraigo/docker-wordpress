@@ -16,6 +16,11 @@ $themepath=esc_url(home_url() . "/wp-content/themes/" . basename(dirname(__FILE_
 	</div><!-- .site-content -->
 
   <footer class="footer">
+			<?php if ( is_active_sidebar( 'custom-footer-widget' ) ) : ?>
+				<div id="header-footer-area" class="chw-widget-area widget-area" role="complementary">
+					<?php dynamic_sidebar( 'custom-footer-widget' ); ?>
+				</div>
+			<?php endif; ?>
       <div class="container">
 				<div class="site-info">
 				<?php

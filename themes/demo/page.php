@@ -18,6 +18,7 @@ get_header(); ?>
 
 		<?php
 		// Start the loop.
+		if (false)
 		while ( have_posts() ) : the_post();
 
 			// Include the page content template.

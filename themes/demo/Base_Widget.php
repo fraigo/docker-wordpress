@@ -35,6 +35,10 @@ class Base_Prop {
             </div>
         <?php
     }
+
+    function update($field,$new_instance,$old_instance){
+        return ( !empty( $new_instance[$field] ) ) ? strip_tags( $new_instance[$field] ) : '';
+    }
 }
 
 class Select_Prop extends Base_Prop {
@@ -55,11 +59,35 @@ class Select_Prop extends Base_Prop {
     }
 }
 
+class Textarea_Prop extends Base_Prop {
+    
+    function __construct($label,$attributes=[],$extra="") {
+        parent::__construct($label,"textarea",$attributes,"",$extra);
+    }
+
+    function getContent($value){
+        return htmlentities($value,ENT_COMPAT | ENT_HTML5);
+    }
+
+    function update($field,$new_instance,$old_instance){
+        if (!empty( $new_instance[$field])){
+            $lines=explode("\n",$new_instance[$field]);
+            foreach($lines as $key=>$line){
+                $lines[$key]=trim($lines[$key]);
+            }
+            return implode("\n",$lines);
+        }
+        return '';
+    }
+}
+
 class Post_Prop extends Base_Prop {
 
+    static $list_created;
 
     function __construct($label,$attributes=[],$extra="") {
-        $attributes["list"]="posts";
+        $post_list="posts_list";
+        $attributes["list"]=$post_list;
         $posts=get_posts([
             "numberposts" => 1000,
             "orderby" => "post_title",
@@ -69,7 +97,8 @@ class Post_Prop extends Base_Prop {
         foreach($posts as $post){
             $post_options[]="<option value=$post->ID >$post->post_title ($post->ID)</option>";
         }
-        $extra="<datalist id='posts'>". implode("",$post_options) ."</datalist>";
+        $extra="<datalist id='$post_list'>". implode("",$post_options) ."</datalist>";
+        
         parent::__construct($label,"input",$attributes,"",$extra);
 
     }
@@ -135,7 +164,7 @@ class Base_Widget extends WP_Widget {
         $instance = array();
  
         foreach($this->attributes as $field=>$attr){
-            $instance[$field] = ( !empty( $new_instance[$field] ) ) ? strip_tags( $new_instance[$field] ) : '';
+            $instance[$field] = $attr->update($field,$new_instance,$old_instance);
         }
         return $instance;
     }

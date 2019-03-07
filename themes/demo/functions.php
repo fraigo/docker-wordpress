@@ -158,6 +158,15 @@ function wpb_widgets_init() {
         'after_widget'  => '</div>',
         'before_title'  => '<h2 class="header-widget-title">',
         'after_title'   => '</h2>',
+	) );
+	
+	register_sidebar( array(
+        'name'          => 'Footer Content',
+        'id'            => 'custom-footer-widget',
+        'before_widget' => '<div class="footer-widget">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h2 class="footer-widget-title">',
+        'after_title'   => '</h2>',
     ) );
  
 }

@@ -132,10 +132,6 @@ body > .main-page {
 	margin-top:0px;
 }
 
-.site-slide{
-	
-}
-
 .site-slide .carousel-item{
 	background-size: cover;
 	background-position: center center;
@@ -156,6 +152,44 @@ body > .main-page {
 	color: #fff;
 	text-shadow: 0px 0px 4px #000;
 }
+
+.progress-slide .carousel-item > .carousel-overlay{
+	background-color: rgba(128,128,128,0.1);
+	padding:20px;
+	display: flex;
+    flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.progress-slide .carousel-overlay{
+	padding: 20px 80px;
+}
+.progress-slide  .carousel-content{
+	width:100%;
+	padding:10px;
+	text-align: center;
+	box-shadow: 0px 0px 5px 5px #ddd;
+	font-size: 0.8rem;
+	min-height:180px;
+ }
+
+.progress-slide > .carousel-indicators{
+    bottom: inherit;
+    top:10px;
+ }
+ .progress-slide > .carousel-indicators > li{
+    width: 30px;
+    height: 30px;
+    border-radius: 99% 99%;
+    text-align: center;
+    text-indent: inherit;
+    font-size:0.8rem;
+    line-height:30px;
+ }
+ .progress-slide > .carousel-indicators > li.active{
+    font-size:0.9rem;
+ }
 
 .carousel-content button {
 	border: 0px;
