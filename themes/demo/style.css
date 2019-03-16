@@ -159,6 +159,11 @@ body > .main-page {
 	min-width: 75%;
 }
 
+.site-info{
+	text-align: right;
+	font-size: 0.75rem;
+}
+
 .progress-slide .carousel-item > .carousel-overlay{
 	background-color: rgba(128,128,128,0.1);
 	padding:20px;
@@ -221,6 +226,22 @@ body > .main-page {
 	}
 	.custom-logo{
 		height:50px;
+	}
+	#custom-footer-area {
+		flex-direction: column;
+	}
+}
+
+@media (min-width: 600px){
+	.wp-block-column {
+		flex-basis: 40%;
+	}
+}
+
+
+@media (max-width:400px){
+	.carousel-overlay{
+		min-height: 90vh !important;
 	}
 }
 
@@ -300,4 +321,24 @@ body > .main-page {
 .header-widget-title{
 	text-align: center;
 	margin: 20px 10px;
+}
+
+#custom-footer-area {
+	display:flex;
+	justify-content: space-evenly;
+}
+
+#footer {
+	padding: 20px 30px;
+	background-color: #666;
+	color: #ddd;
+	font-size: 0.8rem;
+}
+
+#footer a:link, #footer a:hover, #footer a:visited, #footer a:active{
+	color: #fff;
+} 
+
+#footer ul {
+	padding-inline-start: 20px;
 }

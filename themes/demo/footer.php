@@ -15,26 +15,22 @@ $themepath=esc_url(home_url() . "/wp-content/themes/" . basename(dirname(__FILE_
 		</div>
 	</div><!-- .site-content -->
 
-  <footer class="footer">
+  <footer id="footer">
 			<?php if ( is_active_sidebar( 'custom-footer-widget' ) ) : ?>
-				<div id="header-footer-area" class="chw-widget-area widget-area" role="complementary">
+				<div id="custom-footer-area" class="chw-widget-area widget-area" role="complementary">
 					<?php dynamic_sidebar( 'custom-footer-widget' ); ?>
 				</div>
 			<?php endif; ?>
       <div class="container">
 				<div class="site-info">
-				<?php
-					
-					do_action( 'demo_credits' );
-				?>
-				<?php
-				if ( function_exists( 'the_privacy_policy_link' ) ) {
-					the_privacy_policy_link( '', '<span role="separator" aria-hidden="true"></span>' );
-				}
-				?>
-				<a href="<?php echo esc_url( __( 'https://franciscoigor.me/', 'demo' ) ); ?>" class="imprint">
-					<small><?php printf( __( 'Theme by %s', 'demo' ), 'Francisco Igor' ); ?></small>
-				</a>
+					<?php
+					if ( function_exists( 'the_privacy_policy_link' ) ) {
+						the_privacy_policy_link( '', '<span role="separator" aria-hidden="true"></span>' );
+					}
+					?>
+					<a href="<?php echo esc_url( __( 'https://franciscoigor.me/', 'demo' ) ); ?>" class="imprint">
+						<small><?php printf( __( 'Theme by %s', 'demo' ), 'Francisco Igor' ); ?></small>
+					</a>
 			</div><!-- .site-info -->
       </div>
     </footer>
