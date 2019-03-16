@@ -11,6 +11,7 @@
  * @since Demo 1.0
  */
 
+
 get_header(); ?>
 
 	<div id="primary" class="content-area">
@@ -18,7 +19,7 @@ get_header(); ?>
 
 		<?php
 		// Start the loop.
-		if (false)
+		if (!is_front_page())
 		while ( have_posts() ) : the_post();
 
 			// Include the page content template.

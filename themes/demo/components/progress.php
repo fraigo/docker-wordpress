@@ -1,4 +1,4 @@
-<?php $id=rand(10000,99999); ?>
+<?php $id=$id?:rand(10000,99999); ?>
 <div id="progress-carousel<?php echo $id ?>" class="carousel slide progress-slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <?php foreach($progress_steps as $key=>$p){ ?>
@@ -7,7 +7,7 @@
     </ol>
     <div class="carousel-inner">
         <?php foreach($progress_steps as $key=>$step){ ?>
-            <div class="carousel-item <?php echo $key>0?:'active' ?>" style="background-color:#fff">
+            <div class="carousel-item <?php echo $key>0?:'active' ?>" style="background-color:<?php echo $bgcolor?:"#aac" ?>;background-image:<?php echo $backgroundImage?:"inherit" ?>">
                 <div class="carousel-overlay" style="height:250px">
                     <div class="carousel-content" >
                         <h2 class="slide-title"><?php echo $step["header"] ?></h2>

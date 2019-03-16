@@ -9,6 +9,14 @@ class Slides_Widget extends Base_Widget {
         parent::__construct("slides_widget","Slides Widget");
         
         $this->attributes["height"]=new Base_Prop("Slide Height","input",["type"=>"text"]);
+        $this->attributes["vertical_align"]=new Select_Prop("Vertical Align",["size"=>"1"],["flex-end"=>"Bottom","flex-start"=>"Top"],"");
+        $this->attributes["only_content"]=new Select_Prop("Content type",["size"=>"1"],["0"=>"Title and content","1"=>"Only content"],"");
+        $this->attributes["background_image"]=new Base_Prop("Background-image","input",["type"=>"text","placeholder"=>"url('image-url')"]);
+        $this->attributes["opacity"]=new Base_Prop("Background opacity","input",["type" => "range",
+        "min" => "0",
+        "max" => "1",
+        "step" => "0.1",
+        "onmouseover" => "this.title=this.value"]);
         $this->attributes["post1"]=new Post_Prop("Post 1",["type"=>"text"]);
         $this->attributes["post2"]=new Post_Prop("Post 2",["type"=>"text"]);
         $this->attributes["post3"]=new Post_Prop("Post 3",["type"=>"text"]);
@@ -34,9 +42,19 @@ class Slides_Widget extends Base_Widget {
             $colnum=12/count($header_posts);
         }
         $col_class="col-md-$colnum col-sm-12";
+        $card_styles=[];
         if ($instance["height"]!=''){
-            $card_style="height:{$instance["height"]}";    
+            $card_styles[]="height:{$instance["height"]}";    
         }
+        if ($instance["vertical_align"]!=''){
+            $card_styles[]="justify-content:{$instance["vertical_align"]}";    
+        }
+        foreach($instance as $var=>$value){
+            $$var=$value;
+        }
+        $card_styles[]="background-color: rgba(128,128,128,{$opacity});";    
+        $card_style=implode(";",$card_styles);
+        $opacity=$instance["opacity"]==""?"0.4":$instance["opacity"];
         include("$base/components/slides.php");
     }
 

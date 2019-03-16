@@ -7,10 +7,12 @@
                 <img class="custom-logo" src="<?php echo esc_url($logourl) ?>" >
             </div>
             <div class="site-brand col-xs-auto ml-2">
-                <h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
-                <?php if (get_bloginfo( 'description', 'display' )){ ?>
-                <div  class="site-subtitle"><?php echo get_bloginfo( 'description', 'display' ); ?></div>
-                <?php } ?>
+                <?php if ($logourl=='' || $theme_settings["demo_theme_show_text"]=='1') : ?>
+                    <h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
+                    <?php if (get_bloginfo( 'description', 'display' )){ ?>
+                    <div  class="site-subtitle"><?php echo get_bloginfo( 'description', 'display' ); ?></div>
+                    <?php } ?>
+                <?php endif; ?>
             </div>
         </div>
         </a>

@@ -7,6 +7,9 @@
  * @since Demo 1.0
  */
 
+include(dirname(__FILE__)."/options.php");
+$theme_values = get_theme_values($theme_options);
+
 get_header(); ?>
 
 	<div id="primary" class="content-area">
@@ -14,7 +17,7 @@ get_header(); ?>
 
 		<?php
 		// Start the loop.
-		if (false)
+		if (!is_front_page())
 		while ( have_posts() ) : the_post();
 
 			/*
@@ -26,10 +29,11 @@ get_header(); ?>
 
 			// If comments are open or we have at least one comment, load up the comment template.
 			if ( comments_open() || get_comments_number() ) :
-				comments_template();
+				//comments_template();
 			endif;
 
 			// Previous/next post navigation.
+			if ($theme_values["post_navigation"]==1)
 			the_post_navigation( array(
 				'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Next', 'demo' ) . '</span> ' .
 					'<span class="screen-reader-text">' . __( 'Next post:', 'demo' ) . '</span> ' .

@@ -138,15 +138,17 @@ function demo_entry_meta(){
 }
 
 
-function my_plugin_menu() {
-	add_theme_page('My Plugin Theme', 'Demo Theme', 'edit_theme_options', 'demo-theme-options', 'my_plugin_function');
-}
 
 function my_plugin_function(){
 	include(dirname(__FILE__)."/theme_options.php");
 }
 
+function my_plugin_menu() {
+	add_theme_page('My Plugin Theme', 'Demo Theme', 'edit_theme_options', 'demo-theme-options', 'my_plugin_function');
+}
+
 add_action('admin_menu', 'my_plugin_menu');
+
 
 
 function wpb_widgets_init() {
@@ -173,6 +175,36 @@ function wpb_widgets_init() {
 add_action( 'widgets_init', 'wpb_widgets_init' );
 
 
+function mytheme_customize_register( $wp_customize ) {
+
+    $wp_customize->add_section( 'demo_theme_company_section' , array(
+        'title'      => __( 'Additional Site identity', 'demo_theme' ),
+        'priority'   => 30,
+    ));
+
+    $wp_customize->add_setting( 'demo_theme_show_text', array(
+		'default' => '1',
+	));
+    $wp_customize->add_control( new WP_Customize_Control(
+        $wp_customize,
+        'demo_theme_show_text_control',
+            array(
+                'label'      => __( 'Show image and text', 'demo_theme' ),
+                'section'    => 'demo_theme_company_section',
+                'settings'   => 'demo_theme_show_text',
+				'priority'   => 1,
+				'type' => 'select',
+				'choices' => [
+					"1" => "Show logo and text",
+					"2" => "Show logo only"
+				]
+            )
+        )
+    );
+
+}
+add_action( 'customize_register', 'mytheme_customize_register' );
+
 $widget_list=scandir(dirname(__FILE__)."/widgets");
 foreach($widget_list as $widget){
     if ($widget=="." || $widget==".."){
@@ -183,4 +215,19 @@ foreach($widget_list as $widget){
 		require_once(dirname(__FILE__)."/widgets/$widget");
 		$instance=new $name();
 	}
+}
+
+function get_theme_values($theme_options){
+    $theme_values=[];
+    foreach($theme_options as $option=>$item){
+        if (get_option($option) === false){
+            add_option($option, $item["default"] , '', false);
+        }
+        $postvalue=$_POST[$option];
+        if (array_key_exists($option,$_POST)){
+            $result =update_option($option,$postvalue,false);
+        }
+        $theme_values[$option] = get_option($option,$item["default"]);
+    }
+    return $theme_values;
 }

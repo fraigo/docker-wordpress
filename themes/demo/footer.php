@@ -46,6 +46,7 @@ $themepath=esc_url(home_url() . "/wp-content/themes/" . basename(dirname(__FILE_
 <script>
 function updateNav(ev){
 	var el=document.documentElement;
+	var adminBar=document.getElementById("wpadminbar");
 	var top= el.pageYOffset !== undefined ? el.pageYOffset : el.scrollTop;
 	var nav=document.getElementById("site-navbar");
 	var classNames=nav.className.split(" ");
@@ -54,9 +55,16 @@ function updateNav(ev){
 		if (pos==-1){
 			classNames.push("scrolling");
 		}
+		if (adminBar){
+			adminBar.style.position='inherit';
+		}
 	}else{
 		if (pos>=0){
 			classNames.splice(pos,1);
+		}
+		if (adminBar){
+			adminBar.style.position='fixed';
+			adminBar.style.opacity=0.7;
 		}
 	}
 	nav.className=classNames.join(" ");

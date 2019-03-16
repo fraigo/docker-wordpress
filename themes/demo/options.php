@@ -102,17 +102,3 @@ $theme_options=[
 ];
 
 
-function get_theme_values($theme_options){
-    $theme_values=[];
-    foreach($theme_options as $option=>$item){
-        if (get_option($option) === false){
-            add_option($option, $item["default"] , '', false);
-        }
-        $postvalue=$_POST[$option];
-        if (array_key_exists($option,$_POST)){
-            $result =update_option($option,$postvalue,false);
-        }
-        $theme_values[$option] = get_option($option,$item["default"]);
-    }
-    return $theme_values;
-}

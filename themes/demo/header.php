@@ -14,6 +14,7 @@ $theme_values = get_theme_values($theme_options);
 $themepath=esc_url(home_url() . "/wp-content/themes/" . basename(dirname(__FILE__)));
 $header_type=$theme_values["demo_header_type"];
 $frontPage = is_front_page();
+$theme_settings = get_theme_mods();
 
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?> class="no-js">
@@ -132,9 +133,5 @@ $frontPage = is_front_page();
 				*/ ?>
 				<div class="col-md-12 order-first">
 					<div id="content" class="site-content">
-
- 
-
 					
-						
-
+					

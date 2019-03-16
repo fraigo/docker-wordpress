@@ -8,14 +8,16 @@ class Progress_Widget extends Base_Widget {
         
         parent::__construct("progress_widget","Progress Widget");
         
-        $this->attributes["step1"]=new Textarea_Prop("step1",["rows"=>"3"]);
-        $this->attributes["step2"]=new Textarea_Prop("step2",["rows"=>"3"]);
-        $this->attributes["step3"]=new Textarea_Prop("step3",["rows"=>"3"]);
-        $this->attributes["step4"]=new Textarea_Prop("step4",["rows"=>"3"]);
-        $this->attributes["step5"]=new Textarea_Prop("step5",["rows"=>"3"]);
-        $this->attributes["step6"]=new Textarea_Prop("step6",["rows"=>"3"]);
-        $this->attributes["step7"]=new Textarea_Prop("step7",["rows"=>"3"]);
-        $this->attributes["step8"]=new Textarea_Prop("step8",["rows"=>"3"]);
+        $this->attributes["bgcolor"]=new Base_Prop("Background color","input",["type"=>"color"]);
+        $this->attributes["backgroundImage"]=new Base_Prop("Background image","input",["type"=>"text"]);
+        $this->attributes["step1"]=new Textarea_Prop("Step1",["rows"=>"3"]);
+        $this->attributes["step2"]=new Textarea_Prop("Step2",["rows"=>"3"]);
+        $this->attributes["step3"]=new Textarea_Prop("Step3",["rows"=>"3"]);
+        $this->attributes["step4"]=new Textarea_Prop("Step4",["rows"=>"3"]);
+        $this->attributes["step5"]=new Textarea_Prop("Step5",["rows"=>"3"]);
+        $this->attributes["step6"]=new Textarea_Prop("Step6",["rows"=>"3"]);
+        $this->attributes["step7"]=new Textarea_Prop("Step7",["rows"=>"3"]);
+        $this->attributes["step8"]=new Textarea_Prop("Step8",["rows"=>"3"]);
         
         add_action( 'widgets_init', function() {
             register_widget( 'Progress_Widget' );
@@ -31,6 +33,9 @@ class Progress_Widget extends Base_Widget {
             if ($text){
                 $progress_steps[]=["header"=>$header,"text"=>$text];
             }
+        }
+        foreach($instance as $key=>$val){
+            $$key=$val;
         }
         include("$base/components/progress.php");
     }
