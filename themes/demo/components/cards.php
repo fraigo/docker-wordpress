@@ -7,10 +7,11 @@
                 <h2 class="card-title"><?php echo $p->post_title ?></h2>
                 <div class="<?php echo $card_image_class?:"rounded" ?>" style="height:200px;background-image:url('<?php echo $thumbnailURL ?>')" ></div>
                 <div class="card-text"><?php echo substr($p->post_content,0, strpos($p->post_content,"<!--more-->")) ?></div>
-                <?php if($p->post_excerpt!="") { ?>
-                    <div><button class="bgcolor1 color-light"><?php echo $p->post_excerpt ?></button></div>
-                <?php } ?>
+                
             </div>
+            <?php if($p->post_excerpt!="") { ?>
+                <div class="card-buttons"><button onclick="document.location=this.dataset.url" data-url="<?php echo get_permalink($p) ?>" class="bgcolor1 color-light"><?php echo $p->post_excerpt ?></button></div>
+            <?php } ?>
         </div>
     <?php } ?>
 </div>
