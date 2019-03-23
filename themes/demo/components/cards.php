@@ -10,7 +10,9 @@
                 
             </div>
             <?php if($p->post_excerpt!="") { ?>
-                <div class="card-buttons"><button onclick="document.location=this.dataset.url" data-url="<?php echo get_permalink($p) ?>" class="bgcolor1 color-light"><?php echo $p->post_excerpt ?></button></div>
+                <div class="card-buttons">
+                    <a href="<?php echo get_permalink($p) ?>" class="button bgcolor1 color-light"><?php echo $p->post_excerpt ?></a>
+                </div>
             <?php } ?>
         </div>
     <?php } ?>

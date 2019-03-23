@@ -13,7 +13,7 @@
                         <h2 class="slide-title"><?php echo $only_content=="1" ? "" : $p->post_title ?></h2>
                         <div class="slide-text"><?php echo substr($p->post_content,0, strpos($p->post_content,"<!--more-->")) ?></div>
                         <?php if($p->post_excerpt!="") { ?>
-                            <button onclick="document.location=this.dataset.url" data-url="<?php echo get_permalink($p) ?>" class="bgcolor1 color-light"><?php echo $p->post_excerpt ?></button>
+                            <a href="<?php echo get_permalink($p) ?>" class="button bgcolor1 color-light"><?php echo $p->post_excerpt ?></a>
                         <?php } ?>
                     </div>
                 </div>

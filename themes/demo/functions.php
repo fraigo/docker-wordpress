@@ -153,24 +153,18 @@ add_action('admin_menu', 'my_plugin_menu');
 
 function wpb_widgets_init() {
 
-    register_sidebar( array(
-        'name'          => 'Header Content',
-        'id'            => 'custom-header-widget',
-        'before_widget' => '<div class="header-widget">',
-        'after_widget'  => '</div>',
-        'before_title'  => '<h2 class="header-widget-title">',
-        'after_title'   => '</h2>',
-	) );
-	
-	register_sidebar( array(
-        'name'          => 'Footer Content',
-        'id'            => 'custom-footer-widget',
-        'before_widget' => '<div class="footer-widget">',
-        'after_widget'  => '</div>',
-        'before_title'  => '<h2 class="footer-widget-title">',
-        'after_title'   => '</h2>',
-    ) );
- 
+	include("widget_areas.php");
+	foreach($widget_areas as $widget_id => $widget_title){
+		register_sidebar( array(
+			'name'          => $widget_title,
+			'id'            => $widget_id,
+			'before_widget' => '<div class="custom-widget-content '.$widget_id.'-content">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h2 class="custom-widget-title '.$widget_id.'-title">',
+			'after_title'   => '</h2>',
+		) );
+	}
+
 }
 add_action( 'widgets_init', 'wpb_widgets_init' );
 

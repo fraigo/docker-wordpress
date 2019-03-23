@@ -9,12 +9,23 @@
  * @since Demo 1.0
  */
 $themepath=esc_url(home_url() . "/wp-content/themes/" . basename(dirname(__FILE__)));
+$currentPost = get_post();
 ?>
 				</div>
 			</div>
 		</div>
 	</div><!-- .site-content -->
+	</main>
 
+	<div class="main-page" >
+		<div class="main-content">
+			<?php if ( is_active_sidebar( $currentPost->post_name .'-widgets' ) ) : ?>
+						<div id="<?php echo $currentPost->post_name .'widget-area' ?>" class="custom-widget-area widget-area" role="complementary">
+							<?php dynamic_sidebar( $currentPost->post_name .'-widgets' ); ?>
+						</div>
+			<?php endif; ?>
+		</div>
+	</div>
   <footer id="footer">
 			<?php if ( is_active_sidebar( 'custom-footer-widget' ) ) : ?>
 				<div id="custom-footer-area" class="chw-widget-area widget-area" role="complementary">

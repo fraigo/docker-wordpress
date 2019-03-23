@@ -1,6 +1,21 @@
 <?php
+//https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyBFpyQBebeLr_zQUKvjDMiV7xZWJj5nTIc
+$google_fonts=json_decode(file_get_contents(dirname(__FILE__)."/json/webfonts.json"),true);
+$font_options=[];
+$families=[];
+$families["serif"]="Georgia, Times, serif";
+$families["sans-serif"]="Arial, Helvetica, sans-serif";
+$families["monospace"]="Courier New, Courier, monospace";
+$font_options_groups=[];
 
-
+foreach($google_fonts["items"] as $font){
+    if ($font["category"]=="display") continue;
+    $family=$families[$font["category"]]?:$font["category"];
+    $font_options_groups[$font["category"]][]="<option value='{$font["family"]}'>'{$font["family"]}', {$family}</option>";
+}
+foreach($font_options_groups as $grp=>$items){
+    $font_options[]="<optgroup label=\"$grp\">".implode("",$items)."</optgroup>";
+}
 
 $theme_options=[
     "demo_background_image" => [
@@ -25,11 +40,27 @@ $theme_options=[
         "default" => "demo-navbar"
     ],
     "demo_google_font" => [
+        "control" => "select",
         "text" => "<hr>Load Google Font <a href=https://fonts.google.com >(Examples)</a>",
         "attributes" => [
-            "size" => "20"
+            "size" => "1",
+            "onchange" => "updateFont(this)"
         ],
+        "content" => implode("",$font_options),
         "default" => "Lora",
+        "post" => "
+        <script>
+        function updateFont(sel){
+            var text=sel.options[sel.selectedIndex].text;
+            document.getElementById('demo_font_family').value=text;
+            var w=window.open('','fontpreview');
+            w.document.write('<link href=\"https://fonts.googleapis.com/css?family='+sel.value+':400,700\" rel=\"stylesheet\">');
+            w.document.write('<div style=\"font-family:'+text+';font-size:18px\" >'+sel.value+' ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890</div>');
+        }
+        </script>
+        <br>
+        <iframe id=fontpreview style=width:100% name=fontpreview ></iframe>
+        ",
     ],
     "demo_font_family" => [
         "text" => "Default Font",
@@ -53,6 +84,14 @@ $theme_options=[
             "size" => "20"
         ],
         "default" => "#666",
+    ],
+    "demo_content_color" => [
+        "text" => "Content color",
+        "attributes" => [
+            "type" => "color",
+            "size" => "20",
+        ],
+        "default" => "#000",
     ],
     "demo_font_size" => [
         "text" => "Font Size",

@@ -15,6 +15,7 @@ $themepath=esc_url(home_url() . "/wp-content/themes/" . basename(dirname(__FILE_
 $header_type=$theme_values["demo_header_type"];
 $frontPage = is_front_page();
 $theme_settings = get_theme_mods();
+$currentPost = get_post();
 
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?> class="no-js">
@@ -24,7 +25,7 @@ $theme_settings = get_theme_mods();
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 	<?php if ($theme_values["demo_google_font"]) { ?>
-	<link href="https://fonts.googleapis.com/css?family=<?php echo $theme_values["demo_google_font"] ?>" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=<?php echo $theme_values["demo_google_font"] ?>:400,700" rel="stylesheet">
 	<?php } ?>
 	<link rel="stylesheet" href="<?php echo $themepath ?>/css/bootstrap.min.css" >
 	<?php wp_head(); ?>
@@ -37,16 +38,16 @@ $theme_settings = get_theme_mods();
 	a:link, a:visited, a:hover, a:active {
 		color: <?php echo $theme_values["demo_primary_color"] ?>;
 	}
-	.color1{
+	.color1,a.color1:link, a.color1:visited, a.color1:hover, a.color1:active{
 		color: <?php echo $theme_values["demo_primary_color"] ?>;
 	}
-	.color2{
+	.color2,a.color2:link, a.color2:visited, a.color2:hover, a.color2:active{
 		color: <?php echo $theme_values["demo_secondary_color"] ?>;
 	}
-	.color-light{
+	.color-light,a.color-light:link, a.color-light:visited, a.color-light:hover, a.color-light:active{
 		color: #fff;
 	}
-	.color-dark{
+	.color-dark,a.color-dark:link, a.color-dark:visited, a.color-dark:hover, a.color-dark:active{
 		color: #000;
 	}
 	.bgcolor1{
@@ -60,6 +61,14 @@ $theme_settings = get_theme_mods();
 	}
 	.bgcolor-dark{
 		background-color: #000;
+	}
+	#content, .post-content {
+		color: <?php echo $theme_values["demo_content_color"] ?>;
+	}
+	#content h1, #content h2, 
+	.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5
+	{
+		color: <?php echo $theme_values["demo_primary_color"] ?>;
 	}
 	</style>
 </head>
@@ -113,13 +122,13 @@ $theme_settings = get_theme_mods();
 		<div class="main-content">
 			<?php include("components/{$header_type}.php") ?>
 			<?php if ( $frontPage && is_active_sidebar( 'custom-header-widget' ) ) : ?>
-				<div id="header-widget-area" class="chw-widget-area widget-area" role="complementary">
+				<div id="header-widget-area" class="custom-header-widget-area widget-area" role="complementary">
 					<?php dynamic_sidebar( 'custom-header-widget' ); ?>
 				</div>
 			<?php endif; ?>
 		</div>
 	</div>
-		
+<!-- <?php print_r($currentPost->ID . " " .$currentPost->post_name); ?> -->
  <main role="main">
 	 <div class="container">
 			<div class="row p-0">
@@ -133,5 +142,3 @@ $theme_settings = get_theme_mods();
 				*/ ?>
 				<div class="col-md-12 order-first">
 					<div id="content" class="site-content">
-					
-					

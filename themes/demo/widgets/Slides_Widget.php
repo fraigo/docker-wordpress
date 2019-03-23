@@ -9,6 +9,8 @@ class Slides_Widget extends Base_Widget {
         parent::__construct("slides_widget","Slides Widget");
         
         $this->attributes["height"]=new Base_Prop("Slide Height","input",["type"=>"text"]);
+        $this->attributes["text_color"]=new Base_Prop("Text color","input",["type"=>"color"]);
+        $this->attributes["text_shadow"]=new Base_Prop("Text shadow","input",["type"=>"color"]);
         $this->attributes["vertical_align"]=new Select_Prop("Vertical Align",["size"=>"1"],["flex-end"=>"Bottom","flex-start"=>"Top"],"");
         $this->attributes["only_content"]=new Select_Prop("Content type",["size"=>"1"],["0"=>"Title and content","1"=>"Only content"],"");
         $this->attributes["background_image"]=new Base_Prop("Background-image","input",["type"=>"text","placeholder"=>"url('image-url')"]);
@@ -48,6 +50,12 @@ class Slides_Widget extends Base_Widget {
         }
         if ($instance["vertical_align"]!=''){
             $card_styles[]="justify-content:{$instance["vertical_align"]}";    
+        }
+        if ($instance["text_color"]!=''){
+            $card_styles[]="color:{$instance["text_color"]}";    
+        }
+        if ($instance["text_shadow"]!=''){
+            $card_styles[]="text-shadow: 0px 0px 4px {$instance["text_shadow"]}";    
         }
         foreach($instance as $var=>$value){
             $$var=$value;

@@ -10,6 +10,8 @@ class Progress_Widget extends Base_Widget {
         
         $this->attributes["bgcolor"]=new Base_Prop("Background color","input",["type"=>"color"]);
         $this->attributes["backgroundImage"]=new Base_Prop("Background image","input",["type"=>"text"]);
+        $this->attributes["text_color"]=new Base_Prop("Text color","input",["type"=>"color"]);
+        $this->attributes["text_shadow"]=new Base_Prop("Text shadow","input",["type"=>"color"]);
         $this->attributes["step1"]=new Textarea_Prop("Step1",["rows"=>"3"]);
         $this->attributes["step2"]=new Textarea_Prop("Step2",["rows"=>"3"]);
         $this->attributes["step3"]=new Textarea_Prop("Step3",["rows"=>"3"]);
