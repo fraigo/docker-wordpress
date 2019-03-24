@@ -11,7 +11,7 @@
                 <div class="carousel-overlay" style="<?php echo $card_style?:"height:100vh" ?>">
                     <div class="carousel-content" >
                         <h2 class="slide-title"><?php echo $only_content=="1" ? "" : $p->post_title ?></h2>
-                        <div class="slide-text"><?php echo substr($p->post_content,0, strpos($p->post_content,"<!--more-->")) ?></div>
+                        <div class="slide-text"><?php echo substr($p->post_content,0, strpos($p->post_content,"<!--more-->")?:strlen($p->post_content)) ?></div>
                         <?php if($p->post_excerpt!="") { ?>
                             <a href="<?php echo get_permalink($p) ?>" class="button bgcolor1 color-light"><?php echo $p->post_excerpt ?></a>
                         <?php } ?>

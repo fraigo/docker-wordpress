@@ -7,7 +7,7 @@
     </ol>
     <div class="carousel-inner">
         <?php foreach($progress_steps as $key=>$step){ ?>
-            <div class="carousel-item <?php echo $key>0?:'active' ?>" style="color:<?php echo $text_color?:"#fff" ?>;background-color:<?php echo $bgcolor?:"#aaa" ?>;background-image:<?php echo $backgroundImage?:"inherit" ?>">
+            <div class="carousel-item <?php echo $key>0?:'active' ?>" style="height:<?php echo $height?:"inherit" ?>;color:<?php echo $text_color?:"#fff" ?>;background-color:<?php echo $bgcolor?:"#aaa" ?>;background-image:<?php echo $backgroundImage?:"inherit" ?>">
                 <div class="carousel-overlay" style="height:250px">
                     <div class="carousel-content" >
                         <h2 class="slide-title"><?php echo $step["header"] ?></h2>

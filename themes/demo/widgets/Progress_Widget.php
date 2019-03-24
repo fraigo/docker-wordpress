@@ -8,6 +8,7 @@ class Progress_Widget extends Base_Widget {
         
         parent::__construct("progress_widget","Progress Widget");
         
+        $this->attributes["height"]=new Base_Prop("Content Height","input",["type"=>"text"]);
         $this->attributes["bgcolor"]=new Base_Prop("Background color","input",["type"=>"color"]);
         $this->attributes["backgroundImage"]=new Base_Prop("Background image","input",["type"=>"text"]);
         $this->attributes["text_color"]=new Base_Prop("Text color","input",["type"=>"color"]);
