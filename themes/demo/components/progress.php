@@ -11,7 +11,7 @@
                 <div class="carousel-overlay" style="height:250px">
                     <div class="carousel-content" >
                         <h2 class="slide-title"><?php echo $step["header"] ?></h2>
-                        <p class="slide-text"><?php echo $step["text"] ?></p>
+                        <div class="slide-text"><?php echo $step["text"] ?></div>
                         <?php if($step["button"]!="") { ?>
                             <button class="bgcolor1 color-light"><?php echo $step["button"] ?></button>
                         <?php } ?>

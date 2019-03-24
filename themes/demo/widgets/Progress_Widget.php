@@ -12,14 +12,7 @@ class Progress_Widget extends Base_Widget {
         $this->attributes["backgroundImage"]=new Base_Prop("Background image","input",["type"=>"text"]);
         $this->attributes["text_color"]=new Base_Prop("Text color","input",["type"=>"color"]);
         $this->attributes["text_shadow"]=new Base_Prop("Text shadow","input",["type"=>"color"]);
-        $this->attributes["step1"]=new Textarea_Prop("Step1",["rows"=>"3"]);
-        $this->attributes["step2"]=new Textarea_Prop("Step2",["rows"=>"3"]);
-        $this->attributes["step3"]=new Textarea_Prop("Step3",["rows"=>"3"]);
-        $this->attributes["step4"]=new Textarea_Prop("Step4",["rows"=>"3"]);
-        $this->attributes["step5"]=new Textarea_Prop("Step5",["rows"=>"3"]);
-        $this->attributes["step6"]=new Textarea_Prop("Step6",["rows"=>"3"]);
-        $this->attributes["step7"]=new Textarea_Prop("Step7",["rows"=>"3"]);
-        $this->attributes["step8"]=new Textarea_Prop("Step8",["rows"=>"3"]);
+        $this->attributes["post1"]=new Post_Prop("Post 1",["type"=>"text"]);
         
         add_action( 'widgets_init', function() {
             register_widget( 'Progress_Widget' );
@@ -28,14 +21,32 @@ class Progress_Widget extends Base_Widget {
 
     function render($instance){
         $base=dirname(dirname(__FILE__));
-        $step_numbers=[1,2,3,4,5,6,7,8];
+        $post=get_post($instance["post1"]);
         $progress_steps=[];
-        foreach($step_numbers as $num){
-            list($header,$text) = explode("\n",$instance["step$num"]);
-            if ($text){
-                $progress_steps[]=["header"=>$header,"text"=>$text];
+        if($post!=null){
+            $title="Title";
+            $text=$post->post_content;
+            $doc = new DOMDocument();
+            $doc->loadHTML('<?xml encoding="utf-8" ?>'.$post->post_content);
+            $content = $doc->documentElement->getElementsByTagName("ol")[0];
+            if($content){
+                for($i=0; $i< $content->childNodes->length ; $i++){
+                    $item = $content->childNodes[$i];
+                    
+                    $title = $item->childNodes[0]->textContent;
+                    $title = apply_filters('the_content', $title);
+                    
+                    $text = $item->childNodes[1]->textContent;
+                    $text = apply_filters('the_content', $text);
+                    
+                    $progress_steps[]=[
+                        "header"=>$title,
+                        "text"=>$text, 
+                    ];
+                }
             }
         }
+        
         foreach($instance as $key=>$val){
             $$key=$val;
         }
