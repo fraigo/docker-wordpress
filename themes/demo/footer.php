@@ -34,14 +34,16 @@ $currentPost = get_post();
 			<?php endif; ?>
       <div class="container">
 				<div class="site-info">
+				<small>
 					<?php
 					if ( function_exists( 'the_privacy_policy_link' ) ) {
-						the_privacy_policy_link( '', '<span role="separator" aria-hidden="true"></span>' );
+						the_privacy_policy_link( '', '<span role="separator" aria-hidden="true"></span>&nbsp;' );
 					}
 					?>
 					<a href="<?php echo esc_url( __( 'https://franciscoigor.me/', 'demo' ) ); ?>" class="imprint">
-						<small><?php printf( __( 'Theme by %s', 'demo' ), 'Francisco Igor' ); ?></small>
+						<?php printf( __( 'Theme by %s', 'demo' ), 'Francisco Igor' ); ?>
 					</a>
+				</small>
 			</div><!-- .site-info -->
       </div>
     </footer>

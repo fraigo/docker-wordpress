@@ -6,7 +6,7 @@
             <div class="card-content">
                 <h2 class="card-title"><?php echo $p->post_title ?></h2>
                 <div class="<?php echo $card_image_class?:"rounded" ?>" style="background-image:url('<?php echo $thumbnailURL ?>')" ></div>
-                <div class="card-text"><?php echo substr($p->post_content,0, strpos($p->post_content,"<!--more-->")) ?></div>
+                <div class="card-text"><?php echo substr($p->post_content,0, strpos($p->post_content,"<!--more-->")?:strlen($p->post_content)) ?></div>
                 
             </div>
             <?php if($p->post_excerpt!="") { ?>

@@ -65,7 +65,7 @@ $currentPost = get_post();
 	#content, .post-content {
 		color: <?php echo $theme_values["demo_content_color"] ?>;
 	}
-	#content h1, #content h2, 
+	#content h1, #content h2, #content h3, #content h4,
 	.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5
 	{
 		color: <?php echo $theme_values["demo_primary_color"] ?>;

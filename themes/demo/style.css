@@ -50,6 +50,14 @@ h2 {
 	font-size: 1.6em;
 }
 
+h3 {
+	font-size: 1.3em;
+}
+
+h4 {
+	font-size: 1.1em;
+}
+
 .custom-logo{
 	border-radius: 5px 5px;
 	height:60px;
@@ -164,8 +172,11 @@ body > .main-page {
 }
 
 .site-info{
-	text-align: right;
+	text-align: left;
 	font-size: 0.75rem;
+}
+.site-info .imprint{
+	float:right;
 }
 
 .progress-slide .carousel-item > .carousel-overlay{
@@ -293,7 +304,7 @@ body > .main-page {
 .card-buttons{
 	text-align: center;
 	width: 100%;
-	height: 36px;
+	height: 45px;
 }
 
 .card-title{
@@ -302,6 +313,10 @@ body > .main-page {
 
 .card-text{
 	max-width: 350px;
+}
+
+.card-text p{
+	margin-bottom: 10px;
 }
 
 .card-buttons .button {
@@ -335,7 +350,7 @@ body > .main-page {
 }
 
 .wided{
-	height: 100px;
+	height: 200px;
 	width: 100%;
 	background-size: cover;
 	background-position: center center;
