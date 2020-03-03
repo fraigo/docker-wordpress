@@ -16,6 +16,7 @@ class Demo_Widget extends Base_Widget {
     }
 
     function render($instance){
+        global $wp_customize;
         echo esc_html__( $instance['text'], 'text_domain' );
     }
 

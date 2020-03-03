@@ -15,5 +15,8 @@
                 </div>
             <?php } ?>
         </div>
+        <?php if(isset( $wp_customize )) { ?>
+            <button class="button-edit-post" onclick="if (arguments[0]) arguments[0].preventDefault(); window.open('/wp-admin/post.php?post=<?php echo $p->ID ?>&action=edit','_blank')" target="_blank">Edit</button>
+        <?php } ?>
     <?php } ?>
 </div>

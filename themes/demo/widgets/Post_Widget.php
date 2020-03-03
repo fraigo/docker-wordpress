@@ -17,6 +17,7 @@ class Post_Widget extends Base_Widget {
     }
 
     function render($instance){
+        global $wp_customize;
         $base=dirname(dirname(__FILE__));
         $header_post_numbers=[1,2,3];
         $header_posts=[];

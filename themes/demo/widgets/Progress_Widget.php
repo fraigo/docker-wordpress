@@ -14,6 +14,8 @@ class Progress_Widget extends Base_Widget {
         $this->attributes["text_color"]=new Base_Prop("Text color","input",["type"=>"color"]);
         $this->attributes["text_shadow"]=new Base_Prop("Text shadow","input",["type"=>"color"]);
         $this->attributes["post1"]=new Post_Prop("Post 1",["type"=>"text"]);
+        $this->attributes["separator"]=new Base_Prop("Item Separator","input",["type"=>"text"]);
+        $this->attributes["separator2"]=new Base_Prop("Content Separator","input",["type"=>"text"]);
         
         add_action( 'widgets_init', function() {
             register_widget( 'Progress_Widget' );
@@ -21,31 +23,24 @@ class Progress_Widget extends Base_Widget {
     }
 
     function render($instance){
+        global $wp_customize;
+        $sep=@$instance["separator"]?:"<br />";
+        $sep2=@$instance["separator2"]?:".";
         $base=dirname(dirname(__FILE__));
         $post=get_post($instance["post1"]);
         $progress_steps=[];
         if($post!=null){
             $title="Title";
             $text=$post->post_content;
-            $doc = new DOMDocument();
-            $doc->loadHTML('<?xml encoding="utf-8" ?>'.$post->post_content);
-            $content = $doc->documentElement->getElementsByTagName("ol")[0];
-            if($content){
-                for($i=0; $i< $content->childNodes->length ; $i++){
-                    $item = $content->childNodes[$i];
-                    
-                    $title = $item->childNodes[0]->textContent;
-                    $title = apply_filters('the_content', $title);
-                    
-                    $text = $item->childNodes[1]->textContent;
-                    $text = apply_filters('the_content', $text);
-                    
-                    $progress_steps[]=[
-                        "header"=>$title,
-                        "text"=>$text, 
-                    ];
-                }
+            $items=explode($sep,$text);
+            foreach($items as $item){
+                $parts=explode($sep2,$item);
+                $progress_steps[]=[
+                    "header"=>$parts[0],
+                    "text"=>$parts[1], 
+                ];
             }
+            
         }
         
         foreach($instance as $key=>$val){
