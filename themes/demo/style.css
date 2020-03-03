@@ -66,8 +66,7 @@ h4 {
 
 .custom-logo{
 	border-radius: 5px 5px;
-	max-height: 70px;
-    max-width: 300px;
+	height:60px;
 }
 
 
@@ -259,7 +258,7 @@ body > .main-page {
 		font-size: 1rem;
 	}
 	.custom-logo{
-		height:40px;
+		height:50px;
 	}
 	#custom-footer-area {
 		flex-direction: row;

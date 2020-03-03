@@ -4,10 +4,10 @@
   "description": "Docker-Wordpress development template",
   "main": "index.js",
   "scripts": {
-    "start": "docker-compose up -d && echo 'Wordpress service started in http://localhost:8000'",
+    "start": "docker-compose up -d && echo 'Wordpress service started in http://localhost:8001'",
     "stop": "docker-compose stop",
     "reset": "docker-compose down & rm -rf ./uploads/*",
-    "wordpress": "xdg-open http://localhost:8000 2>&1 | open http://localhost:8000",
+    "wordpress": "xdg-open http://localhost:8001 2>&1 | open http://localhost:8001",
     "phpmyadmin": "xdg-open http://localhost:8002 2>&1 | open http://localhost:8002",
     "wpconsole": "docker-compose exec wordpress bash",
     "dbconsole": "docker-compose exec db bash",

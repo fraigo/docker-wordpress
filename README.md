@@ -24,7 +24,7 @@ Note: The *Docker service* must be running before trying to start the containers
 
 ### Wordpress 
 
-* `npm run wordpress` to open the Wordpress site @ `http://localhost:8000`
+* `npm run wordpress` to open the Wordpress site @ `http://localhost:8001`
 
 ### Database administration
 * `npm run phpmyadmin` to open the PhpMyAdmin site @ `http://localhost:8002`
@@ -44,7 +44,7 @@ Note: The *Docker service* must be running before trying to start the containers
 This file contains the current Wordpress services with 3 containers:
 
 * `db` Mysql5.7 using port `3306`
-* `wordpress` Wordpress @ `http://localhost:8000`
+* `wordpress` Wordpress @ `http://localhost:8001`
 * `myadmin` PhpMyAdmin @ `http://localhost:8002`
 
 
