@@ -19,6 +19,10 @@ class Base_Prop {
         return $this->content;
     }
 
+    function getExtra($id,$value){
+        return str_replace("{value}","$value",$this->extra);
+    }
+
     function render($widget,$field,$value){
             $attrs = [];
             foreach($this->attributes as $name=>$val){
@@ -31,7 +35,7 @@ class Base_Prop {
                     name="<?php echo esc_attr( $widget->get_field_name( $field ) ); ?>"  <?php echo implode(" ",$attrs) ?> 
                     value="<?php echo esc_attr( $value ); ?>"><?php echo $this->getContent($value) ?></<?php echo $this->control?>>
                 <script> document.getElementById("<?php echo ( $widget->get_field_id( $field ) ); ?>").value=<?php echo json_encode($value) ?>; </script>
-                <?php echo str_replace("{value}","$value",$this->extra) ?>
+                <?php echo $this->getExtra($widget->get_field_id( $field ), $value) ?>
             </div>
         <?php
     }
@@ -84,23 +88,30 @@ class Textarea_Prop extends Base_Prop {
 class Post_Prop extends Base_Prop {
 
     static $list_created;
+    static $scripts_loaded = false;
 
     function __construct($label,$attributes=[],$extra="") {
-        $post_list="posts_list";
-        $attributes["list"]=$post_list;
+        $attributes["size"]="1";
+        parent::__construct($label,"select",$attributes,"",$extra);
+    }
+
+    function getContent($value){
+        $content=[];
         $posts=get_posts([
             "numberposts" => 1000,
             "orderby" => "post_title",
             "order" => "ASC",
         ]);
-        $post_options=[];
+        $content[]="<option value='' >Select...</option>";
         foreach($posts as $post){
-            $post_options[]="<option value=$post->ID >$post->post_title ($post->ID)</option>";
+            $selected = ($value==$post->ID) ? "selected" : "";
+            $content[]="<option value=$post->ID >$post->post_title ($post->ID)</option>";
         }
-        $extra="<datalist id='$post_list'>". implode("",$post_options) ."</datalist>";
-        
-        parent::__construct($label,"input",$attributes,"",$extra);
+        return implode("",$content);
+    }
 
+    function getExtra($id, $value){
+        return $this->extra;
     }
 
 }

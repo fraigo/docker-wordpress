@@ -15,6 +15,9 @@
                         <?php if($p->post_excerpt!="") { ?>
                             <a href="<?php echo get_permalink($p) ?>" class="button bgcolor1 color-light"><?php echo $p->post_excerpt ?></a>
                         <?php } ?>
+                        <?php if(isset( $wp_customize )) { ?>
+                            <button class="button-edit-post" onclick="if (arguments[0]) arguments[0].preventDefault(); window.open('/wp-admin/post.php?post=<?php echo $p->ID ?>&action=edit','_blank')" target="_blank">Edit</button>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

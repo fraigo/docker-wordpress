@@ -241,6 +241,19 @@ body > .main-page {
 	width: 70px;
 }
 
+.button-edit-post{
+	position: absolute;
+    top: 10px;
+    left: 100px;
+    z-index: 1000000;
+    display: inline-block;
+    width: 100px;
+    padding: 0px;
+	font-size: 14px;
+	background-color: rgba(255,255,255,0.5);
+
+}
+
 @media (max-width:800px){
 	.site-menu{
 		justify-content: center;
