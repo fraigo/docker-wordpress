@@ -14,6 +14,7 @@
     "backup": "docker-compose exec db bash /root/data/backup.sh",
     "restore": "docker-compose exec db bash /root/data/restore.sh",
     "query": "docker-compose exec db bash /root/data/query.sh",
+    "mirror": "./mirror-ftp.sh",
     "permissions": "chmod -R 777 themes && chmod -R 777 plugins && chmod -R 777 data && chmod -R 777 uploads",
     "help" : "echo 'npm run [start|stop|reset|wordpress|phpmyadmin|wpconsole|dbconsole]'"
   },
